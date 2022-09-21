@@ -20,7 +20,7 @@ const createSalesModel = (sequelize, DataTypes) => {
             type: DataTypes.DATE,
         },
         status: {
-            type: DataType.STRING,
+            type: DataTypes.STRING,
         },
     }, 
     { 

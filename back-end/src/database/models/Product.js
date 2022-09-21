@@ -1,16 +1,13 @@
 const createProductsModel = (sequelize, DataTypes) => {
     const Products = sequelize.define("Products", {
-    id:  {
-        type: DataTypes.INTEGER,
-        },
     name: {
         type: DataTypes.STRING,
         },
     price: {
-        type: sequelize.DECIMAL(4, 2),
+        type: DataTypes.DECIMAL,
         },
     urlImage: {
-        type: sequelize.STRING,
+        type: DataTypes.STRING,
         }
     }, {
       tableName: 'Products',
