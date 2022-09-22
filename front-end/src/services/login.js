@@ -1,19 +1,21 @@
-async function userLogin({ email, password }) {
-  const options = {
-    method: POST,
-    headers: { 'Content-Type': 'application/json' },
-    body: { email, password },
-  };
-  const response = await fetch('localhost:3001/login', options);
+import axios from 'axios';
+// import * as dotenv from 'dotenv';
 
-  return response;
+// dotenv.config();
+
+// const { REACT_APP_HOSTNAME, REACT_APP_BACKEND_PORT } = process.env;
+
+const instance = axios.create({
+  baseURL: 'http://localhost:3001',
+});
+
+async function userLogin({ email, password }) {
+  try {
+    const response = await instance.post('login', { email, password });
+    return response;
+  } catch (error) {
+    return error.response.data;
+  }
 }
 
 export default userLogin;
-// fetch("https://backefront.com.br/api/users", {
-//   method: "POST",
-//   headers: {
-//     "Content-Type": "application/json",
-//   },
-//   body: JSON.stringify(data),
-// })
