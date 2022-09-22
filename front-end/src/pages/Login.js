@@ -1,13 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import userLogin from '../services/login';
 import { MainLoginPage, ContentLoginPage, Form, ButtonLogin,
   ButtonCreate } from './styles/login.style';
 
 function Login() {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-  const [loginStatus, setLoginStatus] = useState({ failed: false, message: '' });
+  const [loginStatus, setLoginStatus] = useState({ status: '', message: '' });
 
   useEffect(() => {
     const enableButton = () => {
@@ -22,10 +25,13 @@ function Login() {
 
   async function handleClick() {
     const response = await userLogin({ email, password });
+    // console.log(response);
     if (response.message) {
-      setLoginStatus({ failed: true, message: response.message });
+      setLoginStatus({ status: 'failed', message: response.message });
+    } else {
+      setLoginStatus({ status: 'success', message: '' });
+      navigate('/customer/products');
     }
-    console.log(response);
   }
 
   return (
@@ -57,7 +63,7 @@ function Login() {
             />
           </label>
           <ButtonLogin
-            type="submit"
+            type="button"
             data-testid="common_login__button-login"
             disabled={ isButtonDisabled }
             onClick={ () => handleClick() }
@@ -73,8 +79,12 @@ function Login() {
           </ButtonCreate>
         </Form>
         {
-          loginStatus.failed
-        && <p data-testid="common_login__element-invalid-email">{loginStatus.message}</p>
+          loginStatus.status === 'failed' && (
+            <p
+              data-testid="common_login__element-invalid-email"
+            >
+              {loginStatus.message}
+            </p>)
         }
       </ContentLoginPage>
     </MainLoginPage>
