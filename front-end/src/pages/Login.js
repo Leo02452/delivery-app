@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import userLogin from '../services/login';
+import { MainLoginPage, ContentLoginPage, Form, ButtonLogin,
+  ButtonCreate } from './styles/login.style';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -27,53 +29,55 @@ function Login() {
   }
 
   return (
-    <>
-      <form>
-        <span>Login</span>
-        <label htmlFor="email">
-          <input
-            type="text"
-            id="email"
-            data-testid="common_login__input-email"
-            name="email"
-            placeholder="E-mail"
-            value={ email }
-            onChange={ ({ target }) => setEmail(target.value) }
-          />
-        </label>
-        <label htmlFor="password">
+    <MainLoginPage>
+      <ContentLoginPage>
+        <Form>
+          <span>Login</span>
+          <label htmlFor="email">
+            <input
+              type="text"
+              id="email"
+              data-testid="common_login__input-email"
+              name="email"
+              placeholder="E-mail"
+              value={ email }
+              onChange={ ({ target }) => setEmail(target.value) }
+            />
+          </label>
           <span>Password</span>
-          <input
-            id="password"
-            type="password"
-            data-testid="common_login__input-password"
-            name="password"
-            placeholder="Senha"
-            value={ password }
-            onChange={ ({ target }) => setPassword(target.value) }
-          />
-        </label>
-        <button
-          type="submit"
-          data-testid="common_login__button-login"
-          disabled={ isButtonDisabled }
-          onClick={ handleClick }
-        >
-          LOGIN
-        </button>
-        <button
-          type="submit"
-          className="login-btn"
-          data-testid="common_login__button-register"
-        >
-          Ainda não tenho conta
-        </button>
-      </form>
-      {
-        loginStatus.failed
+          <label htmlFor="password">
+            <input
+              id="password"
+              type="password"
+              data-testid="common_login__input-password"
+              name="password"
+              placeholder="Senha"
+              value={ password }
+              onChange={ ({ target }) => setPassword(target.value) }
+            />
+          </label>
+          <ButtonLogin
+            type="submit"
+            data-testid="common_login__button-login"
+            disabled={ isButtonDisabled }
+            onClick={ () => handleClick() }
+          >
+            LOGIN
+          </ButtonLogin>
+          <ButtonCreate
+            type="submit"
+            className="login-btn"
+            data-testid="common_login__button-register"
+          >
+            Ainda não tenho conta
+          </ButtonCreate>
+        </Form>
+        {
+          loginStatus.failed
         && <p data-testid="common_login__element-invalid-email">{loginStatus.message}</p>
-      }
-    </>
+        }
+      </ContentLoginPage>
+    </MainLoginPage>
   );
 }
 
