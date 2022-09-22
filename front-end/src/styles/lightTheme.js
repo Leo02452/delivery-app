@@ -6,5 +6,5 @@ export default {
     background: 'var(--g1)',
     color: 'var(--g12)',
   },
-  loginLight,
+  login: loginLight,
 };

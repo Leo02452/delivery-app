@@ -16,9 +16,9 @@ export const ContentLoginPage = styled(BasicContent)`
   `;
 
 export const Form = styled.form`
-  background-color: ${(props) => props.theme.loginLight.formBackground};
+  background-color: ${(props) => props.theme.login.formBackground};
   border: 1px solid;
-  border-color: ${(props) => props.theme.loginLight.formBorder};
+  border-color: ${(props) => props.theme.login.formBorder};
   display: flex;
   flex-direction: column;
   padding: 24px;
@@ -36,10 +36,10 @@ export const Form = styled.form`
   `;
 
 export const ButtonLogin = styled.button`
-  background-color: ${(props) => props.theme.loginLight.buttonLoginBackground};
-  color: ${(props) => props.theme.loginLight.buttonLoginTextColor};
+  background-color: ${(props) => props.theme.login.buttonLoginBackground};
+  color: ${(props) => props.theme.login.buttonLoginTextColor};
   border: 1px solid;
-  border-color: ${(props) => props.theme.loginLight.buttonLoginBorderColor};
+  border-color: ${(props) => props.theme.login.buttonLoginBorderColor};
   padding: 12px;
   border-radius: 4px;
   margin: 12px 0;
@@ -47,10 +47,10 @@ export const ButtonLogin = styled.button`
 `;
 
 export const ButtonCreate = styled.button`
-  background-color: ${(props) => props.theme.loginLight.buttonCreateBackground};
-  color: ${(props) => props.theme.loginLight.buttonCreateTextColor};
+  background-color: ${(props) => props.theme.login.buttonCreateBackground};
+  color: ${(props) => props.theme.login.buttonCreateTextColor};
   border: 1px solid;
-  border-color: ${(props) => props.theme.loginLight.buttonCreateBorderColor};
+  border-color: ${(props) => props.theme.login.buttonCreateBorderColor};
   padding: 12px;
   border-radius: 4px;
   margin: 12px 0;
