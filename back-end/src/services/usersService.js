@@ -24,6 +24,25 @@ const usersService = {
     // return nome, email, role e token
     return { ...userWithoutPasswordAndId, token };
   },
+
+  async register(payload) {
+    const emailAlreadyRegistered = await userRepository.findByEmail(payload.email);
+    const nameAlreadyRegistered = await userRepository.findByName(payload.name);
+
+    if (emailAlreadyRegistered || nameAlreadyRegistered) {
+      const e = new Error('Name or email already exists');
+        e.name = 'ConflictError';
+        throw e;
+    }
+
+    const hashPassword = md5(payload.password);
+
+    const userToSave = { ...payload, password: hashPassword, role: 'costumer' };
+    
+    const createdUser = await userRepository.save(userToSave);
+
+    return createdUser;
+  },
 };
 
 module.exports = usersService;

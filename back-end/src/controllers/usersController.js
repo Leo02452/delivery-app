@@ -6,6 +6,12 @@ const usersController = {
 
     res.status(200).json(user);
   },
+
+  async register(req, res) {
+    const createdUser = await usersService.register(req.body);
+
+    res.status(201).json(createdUser);
+  },
 };
 
 module.exports = usersController;

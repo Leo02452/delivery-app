@@ -10,7 +10,7 @@ app.use(cors({ origin: '*' }));
 
 app.use(express.json());
 
-app.use('/login', authRouter);
+app.use('/', authRouter);
 app.use(error);
 
 app.get('/coffee', (_req, res) => res.status(418).end());
