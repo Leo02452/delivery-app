@@ -1,5 +1,7 @@
 import styled from 'styled-components';
-import { BasicContent, BasicMain } from '../../styles/generals.styles';
+import { BasicContent, BasicMain, BasicButton } from '../../styles/generals.styles';
+
+const disableValueButton = 0.3;
 
 export const MainLoginPage = styled(BasicMain)`
   background-color: ${(props) => props.theme.general.background};
@@ -35,24 +37,17 @@ export const Form = styled.form`
   }
   `;
 
-export const ButtonLogin = styled.button`
+export const ButtonLogin = styled(BasicButton)`
   background-color: ${(props) => props.theme.login.buttonLoginBackground};
   color: ${(props) => props.theme.login.buttonLoginTextColor};
-  border: 1px solid;
   border-color: ${(props) => props.theme.login.buttonLoginBorderColor};
-  padding: 12px;
-  border-radius: 4px;
-  margin: 12px 0;
-  font-weight: 600;
+  opacity: ${(props) => props.disabled && disableValueButton};
+  cursor: pointer;
 `;
 
-export const ButtonCreate = styled.button`
+export const ButtonCreate = styled(BasicButton)`
   background-color: ${(props) => props.theme.login.buttonCreateBackground};
   color: ${(props) => props.theme.login.buttonCreateTextColor};
-  border: 1px solid;
   border-color: ${(props) => props.theme.login.buttonCreateBorderColor};
-  padding: 12px;
-  border-radius: 4px;
-  margin: 12px 0;
-  font-weight: 600;
+  cursor: pointer;
 `;

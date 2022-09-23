@@ -1,5 +1,7 @@
 import styled from 'styled-components';
-import { BasicMain, BasicContent } from '../../styles/generals.styles';
+import { BasicMain, BasicContent, BasicButton } from '../../styles/generals.styles';
+
+const disableValueButton = 0.3;
 
 export const MainRegister = styled(BasicMain)`
   background-color: ${(props) => props.theme.general.background};
@@ -34,3 +36,11 @@ export const Form = styled.form`
     margin-bottom: 12px;
   }
   `;
+
+export const ButtonRegister = styled(BasicButton)`
+  background-color: ${(props) => props.theme.register.buttonRegisterBackground};
+  color: ${(props) => props.theme.register.buttonRegisterTextColor};
+  border-color: ${(props) => props.theme.register.buttonRegisterBorderColor};
+  opacity: ${(props) => props.disabled && disableValueButton};
+  cursor: pointer;
+`;
