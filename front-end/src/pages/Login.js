@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import userLogin from '../services/login';
 import { MainLoginPage, ContentLoginPage, Form, ButtonLogin,
   ButtonCreate } from './styles/login.style';
+import saveUser from '../helpers/userStorage';
 
 function Login() {
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ function Login() {
       setLoginStatus({ status: 'failed', message: response.message });
     } else {
       setLoginStatus({ status: 'success', message: '' });
+      saveUser(response.data);
       navigate('/customer/products');
     }
   }
