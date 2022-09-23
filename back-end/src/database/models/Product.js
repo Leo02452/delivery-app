@@ -8,9 +8,10 @@ const createProductsModel = (sequelize, DataTypes) => {
         },
     urlImage: {
         type: DataTypes.STRING,
+        field: 'url_image',
         }
     }, {
-      tableName: 'Products',
+      tableName: 'products',
       timestamps: false,
       underscore: true,
     });
