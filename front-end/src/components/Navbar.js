@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 export default function navbar() {
-  retrun(
+  return (
     <div className="navbar">
       <form>
         <li data-testid="customer_products__element-navbar-link-products">
@@ -17,6 +17,6 @@ export default function navbar() {
           <Link to="/login">Sair</Link>
         </li>
       </form>
-    </div>,
+    </div>
   );
 }
