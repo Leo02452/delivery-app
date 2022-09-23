@@ -71,9 +71,10 @@ function Login() {
             LOGIN
           </ButtonLogin>
           <ButtonCreate
-            type="submit"
+            type="button"
             className="login-btn"
             data-testid="common_login__button-register"
+            onClick={ () => navigate('/register') }
           >
             Ainda não tenho conta
           </ButtonCreate>

@@ -1,4 +1,5 @@
 import { loginLight } from '../pages/styles/loginInfos';
+import { registerLight } from '../pages/styles/registerInfos';
 
 export default {
   title: 'light',
@@ -7,4 +8,5 @@ export default {
     color: 'var(--g12)',
   },
   login: loginLight,
+  register: registerLight,
 };
