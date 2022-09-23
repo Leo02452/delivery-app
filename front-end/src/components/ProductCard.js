@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
-function ProductCard(product) {
+function ProductCard({ product }) {
   const [quantity, setQuantity] = useState(0);
 
-  const { id, name, price, url } = product;
+  const { id, name, price, url_image: urlImage } = product;
+  console.log(product);
 
   function handleClick({ target }) {
     if (target.value === 'increment-button') {
@@ -19,7 +21,7 @@ function ProductCard(product) {
   return (
     <div>
       <img
-        src={ url }
+        src={ urlImage }
         alt="product_image"
         data-testid={ `customer_products__img-card-bg-image-${id}` }
       />
@@ -45,7 +47,7 @@ function ProductCard(product) {
         <span
           data-testid={ `customer_products__input-card-quantity-${id}` }
         >
-          quantity
+          {quantity}
         </span>
         <button
           type="button"
@@ -59,5 +61,14 @@ function ProductCard(product) {
     </div>
   );
 }
+
+ProductCard.propTypes = ({
+  product: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    price: PropTypes.number,
+    url_image: PropTypes.string,
+  }).isRequired,
+});
 
 export default ProductCard;
