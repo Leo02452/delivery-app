@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ContentRegister, MainRegister, Form,
   ButtonRegister } from './styles/register.styles';
 import userRegister from '../services/register';
 
 function Register() {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
+  const [registerStatus, setRegisterStatus] = useState({ status: '', message: '' });
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   useEffect(() => {
@@ -25,9 +29,9 @@ function Register() {
   async function handleClick() {
     const response = await userRegister({ name, email, password });
     if (response.message) {
-      setLoginStatus({ status: 'failed', message: response.message });
+      setRegisterStatus({ status: 'failed', message: response.message });
     } else {
-      setLoginStatus({ status: 'success', message: '' });
+      setRegisterStatus({ status: 'success', message: '' });
       navigate('/customer/products');
     }
   }
@@ -81,16 +85,13 @@ function Register() {
             CADASTRAR
           </ButtonRegister>
         </Form>
-        {/* { */}
-        {/* loginStatus.status === 'failed' && ( */}
-        <p
-          data-testid="common_login__element-invalid-email"
-        >
-          {/* {loginStatus.message} */}
-        </p>
-        Deu ruim
-        {/* ) */}
-        {/* } */}
+        { registerStatus.status === 'failed' && (
+          <p
+            data-testid="common_register__element-invalid_register"
+          >
+            {registerStatus.message}
+          </p>
+        )}
       </ContentRegister>
     </MainRegister>
   );
