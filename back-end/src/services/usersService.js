@@ -47,7 +47,7 @@ const usersService = {
     const token = jwtService.createToken(userWithoutPasswordAndId);
     
     return { ...userWithoutPasswordAndId, token };
-  }
+  },
 };
 
 module.exports = usersService;

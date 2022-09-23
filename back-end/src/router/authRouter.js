@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const usersController = require('../controllers/usersController');
 const authValidate = require('../middleware/validateLogin');
-const productsController = require('../controllers/productsController')
+const productsController = require('../controllers/productsController');
 
 const auth = Router();
 
@@ -14,6 +14,6 @@ authValidate.register,
 usersController.register);
 
 auth.get('/customer/products',
-productsController.getall)
+productsController.getall);
 
 module.exports = auth;
