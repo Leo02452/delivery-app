@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ContentRegister, MainRegister, Form,
   ButtonRegister } from './styles/register.styles';
+import userRegister from '../services/register';
 
 function Register() {
   const [email, setEmail] = useState('');
@@ -20,6 +21,17 @@ function Register() {
     };
     enableButton();
   }, [name, email, password]);
+
+  async function handleClick() {
+    const response = await userRegister({ name, email, password });
+    if (response.message) {
+      setLoginStatus({ status: 'failed', message: response.message });
+    } else {
+      setLoginStatus({ status: 'success', message: '' });
+      navigate('/customer/products');
+    }
+  }
+
   return (
     <MainRegister>
       <ContentRegister>
@@ -64,7 +76,7 @@ function Register() {
             type="button"
             data-testid="common_register__button-register"
             disabled={ isButtonDisabled }
-            onClick={ () => console.log('click') }
+            onClick={ () => handleClick() }
           >
             CADASTRAR
           </ButtonRegister>
