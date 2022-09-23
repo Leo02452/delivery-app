@@ -37,12 +37,17 @@ const usersService = {
 
     const hashPassword = md5(payload.password);
 
-    const userToSave = { ...payload, password: hashPassword, role: 'costumer' };
+    const userToSave = { ...payload, password: hashPassword, role: 'customer' };
     
-    const createdUser = await userRepository.save(userToSave);
-
-    return createdUser;
-  },
+    await userRepository.save(userToSave);
+    
+    const user = await userRepository.findByEmail(payload.email);
+    // console.log('user: ', user);
+    const { password, id, ...userWithoutPasswordAndId } = user;
+    const token = jwtService.createToken(userWithoutPasswordAndId);
+    
+    return { ...userWithoutPasswordAndId, token };
+  }
 };
 
 module.exports = usersService;
