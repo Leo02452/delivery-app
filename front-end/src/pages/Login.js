@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import userLogin from '../services/login';
 import { MainLoginPage, ContentLoginPage, Form, ButtonLogin,
   ButtonCreate } from './styles/login.style';
-import saveUser from '../helpers/userStorage';
+import { saveUser } from '../helpers/userStorage';
 
 function Login() {
   const navigate = useNavigate();
