@@ -10,9 +10,9 @@ function Products() {
     async function getAllProducts() {
       try {
         const response = await instance.get('customer/products');
-        setProducts(response);
+        setProducts(response.data);
       } catch (error) {
-        return error.response.data;
+        setProducts(error.response.data);
       }
     }
 
@@ -24,7 +24,7 @@ function Products() {
       <Navbar />
       <div>
         {
-          products.map((product) => (
+          products?.map((product) => (
             <ProductCard
               key={ product.id }
               product={ product }
