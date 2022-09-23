@@ -4,8 +4,12 @@ const authValidate = require('../middleware/validateLogin');
 
 const auth = Router();
 
-auth.post('/',
+auth.post('/login',
 authValidate.login,
 usersController.login);
+
+auth.post('/register',
+authValidate.register,
+usersController.register);
 
 module.exports = auth;
