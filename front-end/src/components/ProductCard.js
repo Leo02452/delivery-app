@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 function ProductCard({ product }) {
   const [quantity, setQuantity] = useState(0);
 
-  const { id, name, price, url_image: urlImage } = product;
+  const { id, name, price, urlImage } = product;
   console.log(product);
 
   function handleClick({ target }) {
@@ -33,7 +33,8 @@ function ProductCard({ product }) {
       <span
         data-testid={ `customer_products__element-card-price-${id}` }
       >
-        {price}
+        {price.toString().replace('.', ',')}
+        {/* {price.toLocaleString('pt-BR')} */}
       </span>
       <div>
         <button
@@ -44,11 +45,9 @@ function ProductCard({ product }) {
         >
           -
         </button>
-        <span
+        <input
           data-testid={ `customer_products__input-card-quantity-${id}` }
-        >
-          {quantity}
-        </span>
+        />
         <button
           type="button"
           data-testid={ `customer_products__button-card-add-item-${id}` }
@@ -67,7 +66,7 @@ ProductCard.propTypes = ({
     id: PropTypes.number,
     name: PropTypes.string,
     price: PropTypes.number,
-    url_image: PropTypes.string,
+    urlImage: PropTypes.string,
   }).isRequired,
 });
 
