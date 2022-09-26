@@ -47,6 +47,7 @@ function ProductCard({ product }) {
         </button>
         <input
           data-testid={ `customer_products__input-card-quantity-${id}` }
+          value={ quantity }
         />
         <button
           type="button"
