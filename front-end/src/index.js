@@ -2,17 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+import { Provider } from 'react-redux';
 import reportWebVitals from './reportWebVitals';
 import App from './App';
 import Global from './styles/global.styles';
 import light from './styles/lightTheme';
+import store from './redux/store/store';
 
 ReactDOM.render(
   <BrowserRouter>
     <React.StrictMode>
       <ThemeProvider theme={ light }>
         <Global />
-        <App />
+        <Provider store={ store }>
+          <App />
+        </Provider>
       </ThemeProvider>
     </React.StrictMode>
   </BrowserRouter>,
