@@ -12,12 +12,12 @@ import store from './redux/store/store';
 ReactDOM.render(
   <BrowserRouter>
     <React.StrictMode>
-      <ThemeProvider theme={ light }>
-        <Global />
-        <Provider store={ store }>
+      <Provider store={ store }>
+        <ThemeProvider theme={ light }>
+          <Global />
           <App />
-        </Provider>
-      </ThemeProvider>
+        </ThemeProvider>
+      </Provider>
     </React.StrictMode>
   </BrowserRouter>,
   document.getElementById('root'),

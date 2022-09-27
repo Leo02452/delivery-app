@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { getUser } from '../helpers/userStorage';
+import { NavbarMain, NavbarContent, NavLink, ButtonLogout } from './styles/navbar.styles';
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -18,26 +19,36 @@ export default function Navbar() {
   }
 
   return (
-    <div className="navbar">
-      <form>
-        <li data-testid="customer_products__element-navbar-link-products">
-          <Link to="/customer/products">PRODUTOS</Link>
-        </li>
-        <li data-testid="customer_products__element-navbar-link-orders">
-          <Link to="/customer/orders">MEUS PEDIDOS</Link>
-        </li>
-        <li data-testid="customer_products__element-navbar-user-full-name">
-          <h3>{userData.name}</h3>
-        </li>
-        <button
+    // <div className="navbar">
+    <NavbarMain>
+      <NavbarContent>
+        <NavLink
+          data-testid="customer_products__element-navbar-link-products"
+          to="/customer/products"
+        >
+          PRODUTOS
+        </NavLink>
+        <NavLink
+          to="/customer/orders"
+          data-testid="customer_products__element-navbar-link-orders"
+        >
+          MEUS PEDIDOS
+        </NavLink>
+        <h3
+          data-testid="customer_products__element-navbar-user-full-name"
+        >
+          {userData.name}
+        </h3>
+        <ButtonLogout
           data-testid="customer_products__element-navbar-link-logout"
           type="button"
           name="logout-button"
           onClick={ () => handleLogout() }
         >
           Sair
-        </button>
-      </form>
-    </div>
+        </ButtonLogout>
+      </NavbarContent>
+    </NavbarMain>
+    // </div>
   );
 }
