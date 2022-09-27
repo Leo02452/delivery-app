@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import ProductCard from '../components/ProductCard';
 import instance from '../services/axiosInstance';
+import ButtonCart from '../components/buttonCart';
 
 function Products() {
   const [products, setProducts] = useState();
@@ -31,6 +32,7 @@ function Products() {
             />))
         }
       </div>
+      <ButtonCart />
     </>
   );
 }
