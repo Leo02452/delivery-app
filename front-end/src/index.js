@@ -7,7 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import App from './App';
 import Global from './styles/global.styles';
 import light from './styles/lightTheme';
-import store from './redux/store/store';
+import store from './redux/store';
 
 ReactDOM.render(
   <BrowserRouter>
