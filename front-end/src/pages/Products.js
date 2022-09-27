@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import ProductCard from '../components/ProductCard';
 import instance from '../services/axiosInstance';
+import { ProductMain, ProductContent } from './styles/products.styles';
 
 function Products() {
   const [products, setProducts] = useState();
@@ -22,15 +23,17 @@ function Products() {
   return (
     <>
       <Navbar />
-      <div>
-        {
-          products?.map((product) => (
-            <ProductCard
-              key={ product.id }
-              product={ product }
-            />))
-        }
-      </div>
+      <ProductMain>
+        <ProductContent>
+          {
+            products?.map((product) => (
+              <ProductCard
+                key={ product.id }
+                product={ product }
+              />))
+          }
+        </ProductContent>
+      </ProductMain>
     </>
   );
 }

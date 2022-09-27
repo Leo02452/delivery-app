@@ -1,6 +1,7 @@
 import { loginLight } from '../pages/styles/loginInfos';
 import { registerLight } from '../pages/styles/registerInfos';
 import { navbarLight } from '../components/styles/navbarInfo';
+import { productCardLight } from '../components/styles/productCardInfos';
 
 export default {
   title: 'light',
@@ -11,4 +12,5 @@ export default {
   login: loginLight,
   register: registerLight,
   navbar: navbarLight,
+  productCard: productCardLight,
 };

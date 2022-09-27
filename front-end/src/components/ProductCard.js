@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { ProductCardMain } from './styles/productCard.styles';
+import { ProductCardMain, Price, Title } from './styles/productCard.styles';
 
 function ProductCard({ product }) {
   const [quantity, setQuantity] = useState(0);
@@ -26,17 +26,17 @@ function ProductCard({ product }) {
         alt="product_image"
         data-testid={ `customer_products__img-card-bg-image-${id}` }
       />
-      <span
+      <Title
         data-testid={ `customer_products__element-card-title-${id}` }
       >
         {name}
-      </span>
-      <span
+      </Title>
+      <Price
         data-testid={ `customer_products__element-card-price-${id}` }
       >
         {price.toString().replace('.', ',')}
         {/* {price.toLocaleString('pt-BR')} */}
-      </span>
+      </Price>
       <div>
         <button
           type="button"
