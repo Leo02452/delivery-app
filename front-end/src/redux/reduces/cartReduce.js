@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import calculateTotalPrice from '../../helpers/calculateTotalPrice';
 
 const initialState = {
   cartProducts: [],
@@ -9,27 +10,30 @@ const cartReduce = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addToCart: (state, action) => {
+    updateCart: (state, action) => {
       const productExists = state.cartProducts
         .find((product) => product.id === action.payload.id);
 
       if (!productExists) {
-        state.cartProducts.push({ ...action.payload, quantity: 1 });
+        state.cartProducts.push(action.payload);
       } else {
         state.cartProducts = state.cartProducts.map((prd) => {
-          if (prd.id === product.id) {
-            return { ...prd, quantity: prd.quantity + 1 };
+          if (prd.id === productExists.id) {
+            return action.payload;
           }
           return prd;
         });
       }
-      totalPrice = cartProducts.reduce((acc, product) => acc + product.price, 0);
+      state.totalPrice = calculateTotalPrice(state.cartProducts);
     },
     removeFromCart: (state, action) => {
-      state.cartProducts.filter((product) => product.id !== action.payload.id);
-      totalPrice = cartProducts.reduce((acc, product) => acc + product.price, 0);
+      state.cartProducts = state.cartProducts
+        .filter((product) => product.id !== action.payload.id);
+      state.totalPrice = calculateTotalPrice(state.cartProducts);
     },
   },
 });
 
-export default cartReduce;
+export const { updateCart, removeFromCart } = cartReduce.actions;
+
+export default cartReduce.reducer;
