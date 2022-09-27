@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import { ProductCardMain } from './styles/productCard.styles';
 
 function ProductCard({ product }) {
   const [quantity, setQuantity] = useState(0);
@@ -19,7 +20,7 @@ function ProductCard({ product }) {
   }
 
   return (
-    <div>
+    <ProductCardMain>
       <img
         src={ urlImage }
         alt="product_image"
@@ -58,7 +59,7 @@ function ProductCard({ product }) {
           +
         </button>
       </div>
-    </div>
+    </ProductCardMain>
   );
 }
 

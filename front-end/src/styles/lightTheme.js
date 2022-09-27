@@ -1,5 +1,6 @@
 import { loginLight } from '../pages/styles/loginInfos';
 import { registerLight } from '../pages/styles/registerInfos';
+import { navbarLight } from '../components/styles/navbarInfo';
 
 export default {
   title: 'light',
@@ -9,4 +10,5 @@ export default {
   },
   login: loginLight,
   register: registerLight,
+  navbar: navbarLight,
 };
