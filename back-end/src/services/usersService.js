@@ -1,53 +1,23 @@
-const md5 = require('md5');
-const jwtService = require('./jwtService');
-const userRepository = require('../repositories/usersRepositories');
+const userRepository = require("../repositories/usersRepositories");
 
 const usersService = {
-  async login(payload) {
-    // procurar usuario
-    const user = await userRepository.findByEmail(payload.email);
+  async list(role) {
+    if (!role) {
+      const users = await userRepository.findAll();
 
-    const hashPassword = md5(payload.password);
+      const usersWithoutPassword = users
+        .map(({ id, email, name, role }) => ({ id, email, name, role }));
 
-    // se não tiver ou se senha não for a mesma lançar erro - 404
-    if (!user || hashPassword !== user.password) {
-        const e = new Error('Incorrect email or password');
-        e.name = 'NotFoundError';
-        throw e;
+      return usersWithoutPassword;
     }
 
-    // se tiver, tira a senha e gera o token
-    const { password, id, ...userWithoutPasswordAndId } = user;
+    const users = await userRepository.findByRole(role);
 
-    const token = jwtService.createToken({ ...userWithoutPasswordAndId, id });
+    const usersWithoutPassword = users
+        .map(({ id, email, name, role }) => ({ id, email, name, role }));
 
-    // return nome, email, role e token
-    return { ...userWithoutPasswordAndId, token };
+      return usersWithoutPassword;
   },
-
-  async register(payload) {
-    const emailAlreadyRegistered = await userRepository.findByEmail(payload.email);
-    const nameAlreadyRegistered = await userRepository.findByName(payload.name);
-
-    if (emailAlreadyRegistered || nameAlreadyRegistered) {
-      const e = new Error('Name or email already exists');
-        e.name = 'ConflictError';
-        throw e;
-    }
-
-    const hashPassword = md5(payload.password);
-
-    const userToSave = { ...payload, password: hashPassword, role: 'customer' };
-    
-    await userRepository.save(userToSave);
-    
-    const user = await userRepository.findByEmail(payload.email);
-    // console.log('user: ', user);
-    const { password, id, ...userWithoutPasswordAndId } = user;
-    const token = jwtService.createToken({ ...userWithoutPasswordAndId, id });
-    
-    return { ...userWithoutPasswordAndId, token };
-  },
-};
+}
 
 module.exports = usersService;

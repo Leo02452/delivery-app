@@ -1,17 +1,12 @@
-const usersService = require('../services/usersService');
+const usersService = require("../services/usersService");
 
 const usersController = {
-  async login(req, res) {
-    const user = await usersService.login(req.body);
+  async list(req, res) {
+    const { r } = req.query;
+    const users = await usersService.list(r);
 
-    res.status(200).json(user);
+    res.status(200).json(users);
   },
-
-  async register(req, res) {
-    const createdUser = await usersService.register(req.body);
-
-    res.status(201).json(createdUser);
-  },
-};
+}
 
 module.exports = usersController;
