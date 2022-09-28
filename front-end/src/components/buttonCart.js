@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { ButtonMain, Button } from './styles/buttonCart.styles';
 
 function ButtonCart() {
   const navigate = useNavigate();
@@ -18,19 +19,19 @@ function ButtonCart() {
   }, [totalPrice]);
 
   return (
-    <div
+    <ButtonMain
       className="buttonCart"
       data-testid="customer_products__checkout-bottom-value"
     >
-      <button
+      <Button
         type="button"
         data-testid="customer_products__button-cart"
         disabled={ enableButton }
         onClick={ () => navigate('/customer/checkout') }
       >
         { totalPrice.toString().replace('.', ',') }
-      </button>
-    </div>
+      </Button>
+    </ButtonMain>
   );
 }
 export default ButtonCart;

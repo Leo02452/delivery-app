@@ -19,8 +19,7 @@ export default function Navbar() {
   }
 
   return (
-    // <div className="navbar">
-    <NavbarMain>
+    <NavbarMain className="navbar">
       <NavbarContent>
         <NavLink
           data-testid="customer_products__element-navbar-link-products"

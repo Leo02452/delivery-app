@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { ProductCardMain, Price, Title } from './styles/productCard.styles';
+// import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai';
+import { ProductCardMain, Price, Title,
+  ButtonPlusMinus, Quantity } from './styles/productCard.styles';
 import { updateCart, removeFromCart } from '../redux/reduces/cartReduce';
 
 function ProductCard({ product }) {
@@ -57,30 +59,32 @@ function ProductCard({ product }) {
         {price.toString().replace('.', ',')}
         {/* {price.toLocaleString('pt-BR')} */}
       </Price>
-      <div>
-        <button
+      <Quantity>
+        <ButtonPlusMinus
           type="button"
           data-testid={ `customer_products__button-card-rm-item-${id}` }
           value="decrement-button"
           onClick={ (e) => handleClick(e) }
         >
+          {/* <AiOutlineMinus /> */}
           -
-        </button>
+        </ButtonPlusMinus>
         <input
           data-testid={ `customer_products__input-card-quantity-${id}` }
           type="number"
           value={ quantity }
           onChange={ (e) => handleChange(e) }
         />
-        <button
+        <ButtonPlusMinus
           type="button"
           data-testid={ `customer_products__button-card-add-item-${id}` }
           value="increment-button"
           onClick={ (e) => handleClick(e) }
         >
+          {/* <AiOutlinePlus /> */}
           +
-        </button>
-      </div>
+        </ButtonPlusMinus>
+      </Quantity>
     </ProductCardMain>
   );
 }

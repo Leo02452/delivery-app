@@ -35,3 +35,28 @@ export const Title = styled.span`
   font-weight: 600;
   padding: 8px;
 `;
+
+export const ButtonPlusMinus = styled.button`
+  background: ${(props) => props.theme.productCard.button.background};
+  color: ${(props) => props.theme.productCard.button.color};
+  border: 1px solid;
+  border-color: ${(props) => props.theme.productCard.button.border};
+  padding: 4px;
+  border-radius: 100%;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+`;
+
+export const Quantity = styled.div`
+  display: flex;
+  input {
+    width: 100px;
+    padding: 4px 0 4px 20px;
+    text-align: center;
+    border-radius: 8px;
+    border: 1px solid;
+  }
+`;

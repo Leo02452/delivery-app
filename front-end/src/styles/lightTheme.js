@@ -2,6 +2,7 @@ import { loginLight } from '../pages/styles/loginInfos';
 import { registerLight } from '../pages/styles/registerInfos';
 import { navbarLight } from '../components/styles/navbarInfo';
 import { productCardLight } from '../components/styles/productCardInfos';
+import { buttonCardLight } from '../components/styles/buttonCartInfos';
 
 export default {
   title: 'light',
@@ -13,4 +14,5 @@ export default {
   register: registerLight,
   navbar: navbarLight,
   productCard: productCardLight,
+  buttonCard: buttonCardLight,
 };

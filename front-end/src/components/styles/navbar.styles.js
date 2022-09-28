@@ -25,8 +25,11 @@ export const NavLink = styled(Link)`
 `;
 
 export const ButtonLogout = styled(BasicButton)`
-  /* margin: 0; */
+  background: ${(props) => props.theme.navbar.buttonBackground};
+  color: ${(props) => props.theme.navbar.buttonColor};
+  border-color: ${(props) => props.theme.navbar.buttonBorder};
   padding: 4px;
   width: 50px;
   justify-self: end;
+  cursor: pointer;
 `;
