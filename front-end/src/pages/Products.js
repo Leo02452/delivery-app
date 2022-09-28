@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar';
 import ProductCard from '../components/ProductCard';
 import instance from '../services/axiosInstance';
 import { ProductMain, ProductContent } from './styles/products.styles';
+import ButtonCart from '../components/buttonCart';
 
 function Products() {
   const [products, setProducts] = useState();
@@ -33,6 +34,7 @@ function Products() {
               />))
           }
         </ProductContent>
+        <ButtonCart />
       </ProductMain>
     </>
   );
