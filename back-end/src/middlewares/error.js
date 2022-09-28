@@ -1,7 +1,9 @@
 const errorMiddleware = (err, _req, res, _next) => {
     switch (err.name) {
       case 'ZodError':
-        return res.status(400).json({ message: err.issues[0].message });
+        return res.status(400).json({
+          message: `${err.issues[0].path[0]}: ${err.issues[0].message}`,
+        });
       case 'UnauthorizedError':
         return res.status(401).json({ message: err.message });
       case 'NotFoundError':
