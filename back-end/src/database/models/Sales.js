@@ -1,40 +1,42 @@
 const createSalesModel = (sequelize, DataTypes) => {
-    const Sales = sequelize.define('Sales',
-    {
-        userId: {
-          type: DataTypes.INTEGER,
-        },
-        sellerId: {
-          type: DataTypes.INTEGER,
-        },
-        totalPrice: {
-          type: DataTypes.DECIMAL(9,2),
-        },
-        deliveryAddres: {
-          type: DataTypes.STRING,
-        },
-        deliveryNumber: {
-            type: DataTypes.INTEGER,
-        },
-        saleDate: {
-            type: DataTypes.DATE,
-        },
-        status: {
-            type: DataTypes.STRING,
-        },
-    }, 
-    { 
-        timestamps: false,
-        tableName: 'users',
-        underscore: true,
-    })
+  const Sales = sequelize.define('Sale',
+  {
+    userId: {
+      type: DataTypes.INTEGER,
+    },
+    sellerId: {
+      type: DataTypes.INTEGER,
+    },
+    totalPrice: {
+      type: DataTypes.DECIMAL,
+    },
+    deliveryAddress: {
+      type: DataTypes.STRING,
+    },
+    deliveryNumber: {
+        type: DataTypes.INTEGER,
+    },
+    saleDate: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+    },
+    status: {
+        type: DataTypes.STRING,
+        defaultValue: 'Pendente'
+    },
+  }, 
+  { 
+    timestamps: false,
+    tableName: 'sales',
+    underscored: true,
+  })
 
-    Sales.associate = (models) => {
-        Sales.belongsTo(models.User,{foreignKey: 'sellerId', as: 'seller'});
-        Sales.belongsTo(models.User,{foreignKey: 'userId', as: 'user'});
-    }
+  Sales.associate = (models) => {
+    Sales.belongsTo(models.User,{foreignKey: 'sellerId', as: 'seller'});
+    Sales.belongsTo(models.User,{foreignKey: 'userId', as: 'user'});
+  }
 
-    return Sales;
+  return Sales;
 }
 
 module.exports = createSalesModel;

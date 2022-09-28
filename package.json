@@ -55,6 +55,7 @@
     }
   },
   "dependencies": {
+    "react-icons": "^4.4.0",
     "react-router-dom": "^6.4.1",
     "zod": "^3.19.1"
   }

@@ -8,6 +8,14 @@ const Global = createGlobalStyle`
     text-decoration: none;
   }
   :root {
+
+    input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 10px;
+}
+
+
       // grayScale
       --g1: rgba(245, 245, 245, 1);
       --g2: rgba(235, 235, 235, 1);
