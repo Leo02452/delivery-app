@@ -19,7 +19,7 @@ const usersService = {
     // se tiver, tira a senha e gera o token
     const { password, id, ...userWithoutPasswordAndId } = user;
 
-    const token = jwtService.createToken(userWithoutPasswordAndId);
+    const token = jwtService.createToken({ ...userWithoutPasswordAndId, id });
 
     // return nome, email, role e token
     return { ...userWithoutPasswordAndId, token };
@@ -44,7 +44,7 @@ const usersService = {
     const user = await userRepository.findByEmail(payload.email);
     // console.log('user: ', user);
     const { password, id, ...userWithoutPasswordAndId } = user;
-    const token = jwtService.createToken(userWithoutPasswordAndId);
+    const token = jwtService.createToken({ ...userWithoutPasswordAndId, id });
     
     return { ...userWithoutPasswordAndId, token };
   },
