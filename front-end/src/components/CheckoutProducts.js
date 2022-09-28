@@ -1,14 +1,15 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import ButtonCart from './buttonCart';
 import CheckoutTable from './CheckoutTable';
 
 function CheckoutProducts() {
   const products = useSelector((state) => state.cartProducts);
+  const totalPrice = useSelector((state) => state.totalPrice);
   console.log(products);
 
   return (
     <div className="all_requests">
+      <header>Finalizar Pedido</header>
       <table>
         <tr>
           <th>Item</th>
@@ -21,14 +22,19 @@ function CheckoutProducts() {
         { products.map((prd, index) => (
           <CheckoutTable
             key={ index }
-            id={ index }
+            id={ prd.id }
+            index={ index }
             describe={ prd.name }
             quantity={ prd.quantity }
             unitValue={ prd.price }
           />
         ))}
       </table>
-      <ButtonCart />
+      <span
+        data-testid="customer_checkout__element-order-total-price"
+      >
+        {totalPrice.toString().replace('.', ',')}
+      </span>
     </div>
   );
 }
