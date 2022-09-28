@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
+import { ProductCardMain, Price, Title } from './styles/productCard.styles';
 import { updateCart, removeFromCart } from '../redux/reduces/cartReduce';
 
 function ProductCard({ product }) {
@@ -39,23 +40,23 @@ function ProductCard({ product }) {
   }, [quantity, product, dispatch]);
 
   return (
-    <div>
+    <ProductCardMain>
       <img
         src={ urlImage }
         alt="product_image"
         data-testid={ `customer_products__img-card-bg-image-${id}` }
       />
-      <span
+      <Title
         data-testid={ `customer_products__element-card-title-${id}` }
       >
         {name}
-      </span>
-      <span
+      </Title>
+      <Price
         data-testid={ `customer_products__element-card-price-${id}` }
       >
         {price.toString().replace('.', ',')}
         {/* {price.toLocaleString('pt-BR')} */}
-      </span>
+      </Price>
       <div>
         <button
           type="button"
@@ -80,7 +81,7 @@ function ProductCard({ product }) {
           +
         </button>
       </div>
-    </div>
+    </ProductCardMain>
   );
 }
 

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { BasicMain, BasicContent, BasicButton } from '../../styles/generals.styles';
 
 export const NavbarMain = styled(BasicMain)`
-  background-color: ${(props) => props.theme.general.background};
+  background-color: ${(props) => props.theme.navbar.background};
   padding: 0px 0;
   justify-content: end;
   `;
@@ -17,12 +17,11 @@ export const NavbarContent = styled(BasicContent)`
 
   h3 {
     text-align: right;
-    border: 1px solid green;
   }
 `;
 
 export const NavLink = styled(Link)`
-  color: ${(props) => props.theme.general.color};
+  color: ${(props) => props.theme.navbar.color};
 `;
 
 export const ButtonLogout = styled(BasicButton)`
