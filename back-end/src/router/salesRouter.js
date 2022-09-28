@@ -8,7 +8,6 @@ const route = Router();
 route.post('/sales',
   tokenValidation,
   saveSale,
-  salesController.create
-);
+  salesController.create);
 
 module.exports = route;

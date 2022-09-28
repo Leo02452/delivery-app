@@ -1,4 +1,4 @@
-const usersService = require("../services/usersService");
+const usersService = require('../services/usersService');
 
 const usersController = {
   async list(req, res) {
@@ -7,6 +7,6 @@ const usersController = {
 
     res.status(200).json(users);
   },
-}
+};
 
 module.exports = usersController;

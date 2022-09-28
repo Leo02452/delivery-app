@@ -1,8 +1,8 @@
-const userRepository = require("../repositories/usersRepositories");
+const userRepository = require('../repositories/usersRepositories');
 
 const usersService = {
-  async list(role) {
-    if (!role) {
+  async list(userRole) {
+    if (!userRole) {
       const users = await userRepository.findAll();
 
       const usersWithoutPassword = users
@@ -11,13 +11,13 @@ const usersService = {
       return usersWithoutPassword;
     }
 
-    const users = await userRepository.findByRole(role);
+    const users = await userRepository.findByRole(userRole);
 
     const usersWithoutPassword = users
         .map(({ id, email, name, role }) => ({ id, email, name, role }));
 
       return usersWithoutPassword;
   },
-}
+};
 
 module.exports = usersService;

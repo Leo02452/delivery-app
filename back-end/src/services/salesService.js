@@ -25,7 +25,7 @@ const salesService = {
       );
 
       return createdSale.id;
-    })
+    });
 
     return createdSaleId;
   },
