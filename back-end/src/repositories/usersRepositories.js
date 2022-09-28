@@ -19,6 +19,16 @@ const userRepository = {
     
     return userWithoutPwdIdAndRole;
   },
+
+  async findByRole(role) {
+    const users = await db.User.findAll({ where: { role }, raw: true });
+    return users;
+  },
+
+  async findAll() {
+    const users = await db.User.findAll({ raw: true });
+    return users;
+  },
 };
 
 module.exports = userRepository;
