@@ -10,4 +10,7 @@ route.post('/sales',
   saveSale,
   salesController.create);
 
+route.get('/sales/search',
+  salesController.detailsList);
+  
 module.exports = route;

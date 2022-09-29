@@ -29,6 +29,31 @@ const salesService = {
 
     return createdSaleId;
   },
+  async detailsList(id) {
+
+   if (!id) {
+    const sales = await salesRepository.list();
+
+    return sales;
+   }
+
+    const sales = await salesRepository.getByRole(id);
+
+    return sales;
+  },
 };
+
+/* 
+{
+	"sellerId": 2,
+	"totalPrice": 234,
+	"deliveryAddress": "huefhefnjwd", 
+	"deliveryNumber": "44", 
+	"products": [{
+	"id": 2,
+	"quantity": 3
+	}]
+  
+} */
 
 module.exports = salesService;

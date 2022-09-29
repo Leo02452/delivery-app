@@ -8,6 +8,13 @@ const salesController = {
 
     res.status(201).json(salesId);
   },
+  async detailsList(req, res) {
+    const { userId } = req.query;
+
+    const salesList = await salesService.detailsList(userId);
+
+    res.status(200).json(salesList);
+  }
 };
 
 module.exports = salesController;
