@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
+import { FaTimes } from 'react-icons/fa';
 import { removeFromCart } from '../redux/reduces/cartReduce';
 
 function CheckoutTable({
@@ -65,7 +66,7 @@ function CheckoutTable({
           type="submit"
           onClick={ () => dispatch(removeFromCart({ id })) }
         >
-          Remover
+          <FaTimes />
         </button>
       </td>
     </tr>

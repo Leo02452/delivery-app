@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import CheckoutTable from './CheckoutTable';
+import { CheckProdMain, CheckProdContent, Table } from './styles/checkoutProducts.styles';
 
 function CheckoutProducts() {
   const products = useSelector((state) => state.cartProducts);
@@ -8,34 +9,36 @@ function CheckoutProducts() {
   console.log(products);
 
   return (
-    <div className="all_requests">
-      <header>Finalizar Pedido</header>
-      <table>
-        <tr>
-          <th>Item</th>
-          <th>Descrição</th>
-          <th>Quantidade</th>
-          <th>Valor Unitário</th>
-          <th>Sub-total</th>
-          <th>Remover Item</th>
-        </tr>
-        { products.map((prd, index) => (
-          <CheckoutTable
-            key={ index }
-            id={ prd.id }
-            index={ index }
-            describe={ prd.name }
-            quantity={ prd.quantity }
-            unitValue={ prd.price }
-          />
-        ))}
-      </table>
-      <span
-        data-testid="customer_checkout__element-order-total-price"
-      >
-        {totalPrice.toString().replace('.', ',')}
-      </span>
-    </div>
+    <CheckProdMain className="all_requests">
+      <CheckProdContent>
+        <header>Finalizar Pedido</header>
+        <Table>
+          <tr>
+            <th>Item</th>
+            <th>Descrição</th>
+            <th>Quantidade</th>
+            <th>Valor Unitário</th>
+            <th>Sub-total</th>
+            <th>Remover Item</th>
+          </tr>
+          { products.map((prd, index) => (
+            <CheckoutTable
+              key={ index }
+              id={ prd.id }
+              index={ index }
+              describe={ prd.name }
+              quantity={ prd.quantity }
+              unitValue={ prd.price }
+            />
+          ))}
+        </Table>
+        <span
+          data-testid="customer_checkout__element-order-total-price"
+        >
+          {totalPrice.toString().replace('.', ',')}
+        </span>
+      </CheckProdContent>
+    </CheckProdMain>
   );
 }
 
