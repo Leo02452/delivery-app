@@ -1,23 +1,26 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 function OrderCard({ order }) {
   console.log('order', order);
   const { id, totalPrice, status, saleDate } = order;
   return (
-    <div>
-      <p data-testid={ `customer_orders__element-order-${id}` }>
-        { id }
-      </p>
-      <p data-testid={ `customer_orders__element-delivery-status-${id}` }>
-        { status }
-      </p>
-      <p data-testid={ `customer_orders__element-order-date-${id}` }>
-        { saleDate }
-      </p>
-      <p data-testid={ `customer_orders__element-card-price-${id}` }>
-        { totalPrice }
-      </p>
-    </div>
+    <Link to={ `/customer/orders/${id}` }>
+      <div>
+        <p data-testid={ `customer_orders__element-order-${id}` }>
+          { id }
+        </p>
+        <p data-testid={ `customer_orders__element-delivery-status-${id}` }>
+          { status }
+        </p>
+        <p data-testid={ `customer_orders__element-order-date-${id}` }>
+          { saleDate }
+        </p>
+        <p data-testid={ `customer_orders__element-card-price-${id}` }>
+          { totalPrice }
+        </p>
+      </div>
+    </Link>
   );
 }
 

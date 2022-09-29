@@ -4,6 +4,7 @@ import Register from '../pages/Register';
 import Products from '../pages/Products';
 import Checkout from '../pages/Checkout';
 import Orders from '../pages/Orders';
+import OrderDetails from '../pages/OrderDetails';
 
 function AppRoutes() {
   return (
@@ -14,6 +15,7 @@ function AppRoutes() {
       <Route exact path="/customer/checkout" element={ <Checkout /> } />
       <Route exact path="/" element={ <Navigate to="/login" /> } />
       <Route exact path="/customer/orders" element={ <Orders /> } />
+      <Route exact path="/customer/orders/:id" element={ <OrderDetails /> } />
     </Routes>
   );
 }
