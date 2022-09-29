@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { CheckDetailsMain, Button } from './styles/checkoutDetails.styled';
 import saveSale from '../services/sale';
+import { getUser } from '../helpers/userStorage';
 import axiosInstances from '../services/axiosInstance';
 
 function CheckoutDetails() {
@@ -10,6 +11,8 @@ function CheckoutDetails() {
   const [deliveryAddress, setDeliveryAddress] = useState();
   const [deliveryNumber, setDeliveryNumber] = useState();
   const [sellerName, setSellerName] = useState();
+  const [token, setToken] = useState();
+  const [stateMessage, setStateMessage] = useState({ status: '', message: '' });
 
   const products = useSelector((state) => state.cartProducts);
   const totalPrice = useSelector((state) => state.totalPrice);
@@ -20,13 +23,16 @@ function CheckoutDetails() {
     async function getAllSellers() {
       try {
         const response = await axiosInstances.get('users/search?r=seller');
-        console.log(response);
         setSellers(response.data);
+        setSellerName(response.data[0].name);
       } catch (error) {
         setSellers(error.response.data);
       }
     }
     getAllSellers();
+
+    const user = getUser();
+    setToken(user.token);
   }, []);
 
   async function handleClick() {
@@ -44,10 +50,14 @@ function CheckoutDetails() {
       products: products.map(({ id, quantity }) => ({ id, quantity })),
     };
     // fazer a requisição e receber o id
-    const id = await saveSale(body);
+    const response = await saveSale(body, token);
 
-    // navegar até a pagina de detalhes
-    navigate(`/customer/orders/${id}`);
+    if (response.message) {
+      setStateMessage({ status: 'failed', message: response.message });
+    } else {
+      setStateMessage({ status: 'success', message: '' });
+      navigate(`/customer/orders/${response.data}`);
+    }
   }
 
   return (
@@ -56,10 +66,11 @@ function CheckoutDetails() {
         Vendedor Responsavel
         <select
           data-testid="customer_checkout__select-seller"
-          name="seller"
+          // name="seller"
           onChange={ (e) => setSellerName(e.target.value) }
           value={ sellerName }
         >
+          {/* <option value="" selected disabled hidden>Escolha um Vendendor</option> */}
           {sellers?.map(({ name }, index) => (
             <option
               key={ index }
@@ -100,6 +111,10 @@ function CheckoutDetails() {
       >
         Finalizar Pedido
       </Button>
+      {
+        stateMessage.status === 'failed'
+        && <p>{ stateMessage.message }</p>
+      }
     </CheckDetailsMain>
   );
 }

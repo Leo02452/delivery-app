@@ -29,7 +29,7 @@ function ButtonCart() {
         disabled={ enableButton }
         onClick={ () => navigate('/customer/checkout') }
       >
-        { totalPrice.toString().replace('.', ',') }
+        { totalPrice.toFixed(2).replace('.', ',') }
       </Button>
     </ButtonMain>
   );

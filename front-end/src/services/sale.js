@@ -1,6 +1,6 @@
 import axiosInstance from './axiosInstance';
 
-async function saveSale(sale) {
+async function saveSale(sale, token) {
   const {
     sellerId,
     totalPrice,
@@ -17,7 +17,11 @@ async function saveSale(sale) {
       deliveryAddress,
       deliveryNumber,
       status,
-      products });
+      products }, {
+      headers: {
+        authorization: token,
+      },
+    });
     return response;
   } catch (error) {
     return error.response.data;

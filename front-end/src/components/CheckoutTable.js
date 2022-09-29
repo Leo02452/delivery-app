@@ -21,7 +21,7 @@ function CheckoutTable({
   //   unitValue);
   useEffect(() => {
     const subTotalMath = () => {
-      const total = (Number(unitValue) * quantity).toFixed(2);
+      const total = (parseFloat(unitValue) * quantity).toFixed(2);
       setSubTotal(total);
     };
     subTotalMath();
