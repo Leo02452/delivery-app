@@ -1,19 +1,21 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
-function OrderCard() {
+function OrderCard({ order }) {
+  console.log('order', order);
+  const { id, totalPrice, status, saleDate } = order;
   return (
     <div>
-      <p data-testid="customer_orders__element-order-id-<id>">
-        Aqui vai o numero do pedido
+      <p data-testid={ `customer_orders__element-order-${id}` }>
+        { id }
       </p>
-      <p data-testid="customer_orders__element-delivery-status-<id>">
-        Aqui vai o status da entrega
+      <p data-testid={ `customer_orders__element-delivery-status-${id}` }>
+        { status }
       </p>
-      <p data-testid="customer_orders__element-order-date-<id>">
-        Aqui vai a data do pedido
+      <p data-testid={ `customer_orders__element-order-date-${id}` }>
+        { saleDate }
       </p>
-      <p data-testid="customer_orders__element-card-price-<id>">
-        Aqui vai o valor total do pedido
+      <p data-testid={ `customer_orders__element-card-price-${id}` }>
+        { totalPrice }
       </p>
     </div>
   );
@@ -21,6 +23,11 @@ function OrderCard() {
 
 export default OrderCard;
 
-// - 34: customer_orders__element-delivery-status-<id>
-// - 35: customer_orders__element-order-date-<id>
-// - 36: customer_orders__element-card-price-<id></id>
+OrderCard.propTypes = ({
+  order: PropTypes.shape({
+    id: PropTypes.number,
+    status: PropTypes.string,
+    totalPrice: PropTypes.string,
+    saleDate: PropTypes.string,
+  }).isRequired,
+});

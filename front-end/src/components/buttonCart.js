@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { ButtonMain, Button } from './styles/buttonCart.styles';
 
+// const cinco = 5;
+
 function ButtonCart() {
   const navigate = useNavigate();
   const [enableButton, setEnableButton] = useState(true);
@@ -29,7 +31,7 @@ function ButtonCart() {
         disabled={ enableButton }
         onClick={ () => navigate('/customer/checkout') }
       >
-        { totalPrice.toString().replace('.', ',') }
+        { totalPrice.toFixed(2).replace('.', ',') }
       </Button>
     </ButtonMain>
   );
