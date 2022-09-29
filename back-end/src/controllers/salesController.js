@@ -14,6 +14,14 @@ const salesController = {
     const salesList = await salesService.detailsList(userId);
 
     res.status(200).json(salesList);
+  },
+
+  async getById(req, res) {
+    const { id } = req.params;
+    
+    const sale = await salesService.getById(id);
+
+    res.status(200).json(sale)
   }
 };
 

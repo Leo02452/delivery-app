@@ -19,7 +19,13 @@ const salesRepository = {
     const sales = await db.Sale.findAll();
 
     return sales;
-  }
+  },
+
+  async getById(id) {
+    const sale = await db.Sale.findByPk(id);
+    
+    return sale;
+  },
 };
 
 module.exports = salesRepository;
