@@ -29,6 +29,44 @@ const salesService = {
 
     return createdSaleId;
   },
+
+  async detailsList(id) {
+
+   if (!id) {
+    const sales = await salesRepository.list();
+
+    return sales;
+   }
+
+    const sales = await salesRepository.getByRole(id);
+
+    return sales;
+  },
+
+  async getById(id) {
+    const sale = await salesRepository.getById(id);
+
+    if (!sale) {
+      const e = new Error('Sale not found');
+      e.name = 'NotFoundError';
+      throw e;
+    }
+
+    return sale
+  },
 };
+
+/* 
+{
+	"sellerId": 2,
+	"totalPrice": 234,
+	"deliveryAddress": "huefhefnjwd", 
+	"deliveryNumber": "44", 
+	"products": [{
+	"id": 2,
+	"quantity": 3
+	}]
+  
+} */
 
 module.exports = salesService;
