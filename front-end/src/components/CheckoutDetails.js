@@ -10,7 +10,7 @@ function CheckoutDetails() {
   const [sellers, setSellers] = useState();
   const [deliveryAddress, setDeliveryAddress] = useState();
   const [deliveryNumber, setDeliveryNumber] = useState();
-  const [sellerName, setSellerName] = useState();
+  const [sellerId, setSellerId] = useState();
   const [token, setToken] = useState();
   const [stateMessage, setStateMessage] = useState({ status: '', message: '' });
 
@@ -24,7 +24,7 @@ function CheckoutDetails() {
       try {
         const response = await axiosInstances.get('users/search?r=seller');
         setSellers(response.data);
-        setSellerName(response.data[0].name);
+        setSellerId(response.data[0].id);
       } catch (error) {
         setSellers(error.response.data);
       }
@@ -36,20 +36,14 @@ function CheckoutDetails() {
   }, []);
 
   async function handleClick() {
-    // montar o body
     const body = {
-      sellerId: sellers.reduce((acc, seller) => {
-        if (seller.name === sellerName) {
-          return seller.id;
-        }
-        return acc;
-      }, 0),
+      sellerId: Number(sellerId),
       totalPrice,
       deliveryAddress,
       deliveryNumber,
       products: products.map(({ id, quantity }) => ({ id, quantity })),
     };
-    // fazer a requisição e receber o id
+
     const response = await saveSale(body, token);
 
     if (response.message) {
@@ -66,14 +60,13 @@ function CheckoutDetails() {
         Vendedor Responsavel
         <select
           data-testid="customer_checkout__select-seller"
-          // name="seller"
           onChange={ (e) => setSellerName(e.target.value) }
-          value={ sellerName }
         >
-          {/* <option value="" selected disabled hidden>Escolha um Vendendor</option> */}
-          {sellers?.map(({ name }, index) => (
+          {sellers?.map(({ id, name }, index) => (
             <option
               key={ index }
+              value={ id }
+              name="seller"
             >
               {name}
             </option>
