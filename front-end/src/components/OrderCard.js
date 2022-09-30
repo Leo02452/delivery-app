@@ -8,7 +8,7 @@ function OrderCard({ order }) {
     <OrderCardContent>
       <LinkStyled to={ `/customer/orders/${id}` }>
         <OrdCard>
-          <p data-testid={ `customer_orders__element-order-${id}` }>
+          <p data-testid={ `customer_orders__element-order-id-${id}` }>
             { id }
           </p>
           <p data-testid={ `customer_orders__element-delivery-status-${id}` }>

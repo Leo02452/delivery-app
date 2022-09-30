@@ -27,4 +27,17 @@ async function saveSale(sale, token) {
     return error.response.data;
   }
 }
+
+/*
+ {
+  "sellerId": 2,
+  "totalPrice": 123,
+  "deliveryAddress": "erfrfrg",
+  "deliveryNumber": "23",
+  "products":[{
+  "id": 2,
+ "quantity": 2,
+ }]
+ } */
+
 export default saveSale;
