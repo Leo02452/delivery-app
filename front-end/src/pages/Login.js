@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import userLogin from '../services/login';
 import { MainLoginPage, ContentLoginPage, Form, ButtonLogin,
   ButtonCreate } from './styles/login.style';
-import { saveUser } from '../helpers/userStorage';
+import { getUser, saveUser } from '../helpers/userStorage';
 
 function Login() {
   const navigate = useNavigate();
@@ -12,6 +12,14 @@ function Login() {
   const [password, setPassword] = useState('');
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [loginStatus, setLoginStatus] = useState({ status: '', message: '' });
+
+  useEffect(() => {
+    const user = getUser();
+
+    if (user) {
+      navigate('/customer/products');
+    }
+  }, []);
 
   useEffect(() => {
     const enableButton = () => {
