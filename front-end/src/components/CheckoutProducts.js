@@ -35,7 +35,7 @@ function CheckoutProducts() {
         <span
           data-testid="customer_checkout__element-order-total-price"
         >
-          {totalPrice.toString().replace('.', ',')}
+          { totalPrice.toFixed(2).replace('.', ',') }
         </span>
       </CheckProdContent>
     </CheckProdMain>
