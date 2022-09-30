@@ -1,13 +1,16 @@
 import { useParams } from 'react-router-dom';
-// import instance from '../services/axiosInstance';
-import OrderTable from '../components/OrderTable';
+import { useEffect, useState } from 'react';
+import instance from '../services/axiosInstance';
+// import OrderTable from '../components/OrderTable';
 
 function OrderDetails() {
   const { id } = useParams();
-  // const [sale, setSale] = useState();
+  const [sale, setSale] = useState();
+  const [ ]
+  const [ sallerName, setSallerName] = useState();
 
-  const sale = {
-    sellerId: 'zé birita',
+  /*   const sale = {
+    seller: 'zé birita',
     saleDate: '29/12/23',
     totalPrice: '238,77',
     status: 'Pendente',
@@ -28,50 +31,50 @@ function OrderDetails() {
         price: '1.56',
       },
     ],
-  };
+  }; */
 
-  /*   useEffect(() => {
+  useEffect(() => {
     async function getSale() {
       try {
-        const response = await instance.get(`customer/sales/${id}`);
+        const response = await instance.get(`sales/${id}`);
         setSale(response.data);
       } catch (error) {
         setSale(error.response.data);
       }
     }
     getSale();
-  }); */
+  }, [id]);
 
   async function handleClick() {
     // Em construção
     // Função responsável por alterar o estado da venda para entregue (rascunho)
     console.log('Finge que ta mudando o estado');
   }
-
-  const { sellerId, saleDate, totalPrice, status, products } = sale;
+  console.log(sale);
+  // const { sellerId, saleDate, totalPrice, status, products } = sale;
   return (
     <>
       <h1>Detalhe do Pedido</h1>
       <p
         data-testid="customer_order_details__element-order-details-label-order-id"
       >
-        { id }
+        Sale id
       </p>
       <p
         data-testid="customer_order_details__element-order-details-label-seller-name"
       >
         {/* Vai o nome do vendedor */}
-        { sellerId }
+        Nome vendedor
       </p>
       <p
         data-testid="customer_order_details__element-order-details-label-order-date"
       >
-        { saleDate }
+        Data da venda
       </p>
       <p
         data-testid="customer_order_details__element-order-details-label-delivery-status"
       >
-        { status }
+        Status da venda
       </p>
       <button
         type="button"
@@ -88,7 +91,7 @@ function OrderDetails() {
           <th>Valor Unitário</th>
           <th>Sub-total</th>
         </tr>
-        { products?.map((prd, index) => (
+        {/* { products?.map((prd, index) => (
           <OrderTable
             key={ index }
             index={ index }
@@ -96,12 +99,12 @@ function OrderDetails() {
             quantity={ prd.quantity }
             unitValue={ prd.price }
           />
-        ))}
+        ))} */}
       </table>
       <span
         data-testid="customer_order_details__element-order-total-price"
       >
-        { totalPrice }
+        Valor Total
       </span>
     </>
   );
