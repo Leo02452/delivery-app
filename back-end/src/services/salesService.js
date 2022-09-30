@@ -31,7 +31,6 @@ const salesService = {
   },
 
   async detailsList(id) {
-
    if (!id) {
     const sales = await salesRepository.list();
 
@@ -52,21 +51,19 @@ const salesService = {
       throw e;
     }
 
-    return sale
+    return sale;
   },
 };
 
-/* 
-{
-	"sellerId": 2,
-	"totalPrice": 234,
-	"deliveryAddress": "huefhefnjwd", 
-	"deliveryNumber": "44", 
-	"products": [{
-	"id": 2,
-	"quantity": 3
-	}]
-  
-} */
+// {
+// "sellerId": 2,
+// "totalPrice": 234,
+// "deliveryAddress": "huefhefnjwd", 
+// "deliveryNumber": "44", 
+// "products": [{
+// "id": 2,
+// "quantity": 3
+// }]  
+// }
 
 module.exports = salesService;

@@ -1,5 +1,5 @@
-const db = require('../database/models');
 const { Op } = require('sequelize');
+const db = require('../database/models');
 
 const salesRepository = {
   async saveSale(sale) {
@@ -9,9 +9,8 @@ const salesRepository = {
 
   async getByRole(userId) {
     const sales = await db.Sale.findAll({ where: {
-      [Op.or]: [{ userId }, { sellerId: userId }]
-    }});
-
+      [Op.or]: [{ userId }, { sellerId: userId }],
+    } });
     return sales;
   },
 

@@ -14,6 +14,6 @@ route.get('/sales/search',
   salesController.detailsList);
   
 route.get('/sales/:id',
-  salesController.getById)
+  salesController.getById);
 
 module.exports = route;
