@@ -22,7 +22,7 @@ const authService = {
     const token = jwtService.createToken({ ...userWithoutPasswordAndId, id });
 
     // return nome, email, role e token
-    return { ...userWithoutPasswordAndId, token };
+    return { id, ...userWithoutPasswordAndId, token };
   },
 
   async register(payload) {

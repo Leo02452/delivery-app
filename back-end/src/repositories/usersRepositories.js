@@ -29,6 +29,11 @@ const userRepository = {
     const users = await db.User.findAll({ raw: true });
     return users;
   },
+
+  async findByPk() {
+    const users = await db.User.findAll({ raw: true });
+    return users;
+  },
 };
 
 module.exports = userRepository;

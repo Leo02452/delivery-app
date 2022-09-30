@@ -1,30 +1,37 @@
+import { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import OrderCard from '../components/OrderCard';
 import { OrderMain } from './styles/orders.style';
+import instance from '../services/axiosInstance';
+import { getUser } from '../helpers/userStorage';
 
 function Orders() {
-// Pegar o usuário no localStorage
-// Fazer requisição no backend pra pegar todas as sales do usuário logado
-// Realizar o map das sales e mandar pro componente OrderCard
+  const [orders, setOrders] = useState();
+  // Pegar o usuário no localStorage;
+  const user = getUser();
+  const { id } = user;
+  console.log(id);
 
-  // Exemplo de um array de orders
-  const orders = [
-    { id: 1,
-      status: 'Pendente',
-      saleDate: '29/09/22',
-      totalPrice: '34,54',
-    },
-    { id: 2,
-      status: 'Entregue',
-      saleDate: '18/05/22',
-      totalPrice: '154,88',
-    },
-  ];
+  // Fazer requisição no backend pra pegar todas as sales do usuário logado
+  useEffect(() => {
+    async function getOrders() {
+      try {
+        const response = await instance.get(`sales/search?userId=${id}`);
+        setOrders(response.data);
+      } catch (error) {
+        setOrders(error.response.data);
+      }
+    }
+
+    getOrders();
+  }, [id]);
+  console.log(orders);
   return (
     <>
       <Navbar />
       <OrderMain>
         {
+          // Realizar o map das sales e mandar pro componente OrderCard
           orders?.map((order, index) => (
             <OrderCard
               key={ index }
