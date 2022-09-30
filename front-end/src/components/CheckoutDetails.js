@@ -60,7 +60,7 @@ function CheckoutDetails() {
         Vendedor Responsavel
         <select
           data-testid="customer_checkout__select-seller"
-          onChange={ (e) => setSellerName(e.target.value) }
+          onChange={ (e) => setSellerId(e.target.value) }
         >
           {sellers?.map(({ id, name }, index) => (
             <option
