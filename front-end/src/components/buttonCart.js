@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { ButtonMain, Button } from './styles/buttonCart.styles';
 
+// const cinco = 5;
+
 function ButtonCart() {
   const navigate = useNavigate();
   const [enableButton, setEnableButton] = useState(true);
