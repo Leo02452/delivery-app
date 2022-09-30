@@ -1,6 +1,6 @@
 import Navbar from '../components/Navbar';
 import OrderCard from '../components/OrderCard';
-import { OrderMain } from './styles/orders.style';
+import { OrderMain, OrderContent } from './styles/orders.style';
 
 function Orders() {
 // Pegar o usuário no localStorage
@@ -26,10 +26,12 @@ function Orders() {
       <OrderMain>
         {
           orders?.map((order, index) => (
-            <OrderCard
-              key={ index }
-              order={ order }
-            />))
+            <OrderContent key={ index }>
+              <OrderCard
+                order={ order }
+              />
+            </OrderContent>
+          ))
         }
       </OrderMain>
     </>

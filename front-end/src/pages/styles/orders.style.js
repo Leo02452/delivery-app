@@ -1,10 +1,12 @@
 import styled from 'styled-components';
-import { BasicMain, BasicContent } from '../../styles/generals.styles';
+import { BasicMain } from '../../styles/generals.styles';
 
 export const OrderMain = styled(BasicMain)`
-
+  /* background-color: green; */
+  padding: 30px 0;
 `;
 
-export const OrderContent = styled(BasicContent)`
-
+export const OrderContent = styled.div`
+  /* background-color:yellow; */
+  margin: 12px 0;
 `;
