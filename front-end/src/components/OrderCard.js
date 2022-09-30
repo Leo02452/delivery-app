@@ -2,13 +2,13 @@ import PropTypes from 'prop-types';
 import { OrderCardContent, OrdCard, LinkStyled } from './styles/orderCard.styles';
 
 function OrderCard({ order }) {
-  console.log('order', order);
   const { id, totalPrice, status, saleDate } = order;
+
   return (
     <OrderCardContent>
       <LinkStyled to={ `/customer/orders/${id}` }>
         <OrdCard>
-          <p data-testid={ `customer_orders__element-order-${id}` }>
+          <p data-testid={ `customer_orders__element-order-id-${id}` }>
             { id }
           </p>
           <p data-testid={ `customer_orders__element-delivery-status-${id}` }>
@@ -18,7 +18,7 @@ function OrderCard({ order }) {
             { saleDate }
           </p>
           <p data-testid={ `customer_orders__element-card-price-${id}` }>
-            { totalPrice }
+            { totalPrice.replace('.', ',') }
           </p>
         </OrdCard>
       </LinkStyled>
