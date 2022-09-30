@@ -2,8 +2,8 @@ const { Op } = require('sequelize');
 const db = require('../database/models');
 
 const include = [
-  { model: db.Products, as: 'products', through: { attributes: [ 'quantity' ] }},
-  { model: db.User, as: 'seller',  attributes: ['name'] },
+  { model: db.Products, as: 'products', through: { attributes: ['quantity'] } },
+  { model: db.User, as: 'seller', attributes: ['name'] },
 ];
 
 const salesRepository = {
@@ -28,7 +28,7 @@ const salesRepository = {
   },
 
   async getById(id) {
-    const sale = await db.Sale.findOne({ include, where: { id }, });
+    const sale = await db.Sale.findOne({ include, where: { id } });
 
     return sale;
   },
