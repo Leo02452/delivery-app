@@ -8,14 +8,18 @@ const salesRepository = {
   },
 
   async getByRole(userId) {
-    const sales = await db.Sale.findAll({ where: {
-      [Op.or]: [{ userId }, { sellerId: userId }],
-    } });
+    const sales = await db.Sale.findAll({
+      where: {
+        [Op.or]: [{ userId }, { sellerId: userId }],
+      },
+    });
     return sales;
   },
 
   async list() {
-    const sales = await db.Sale.findAll();
+    const sales = await db.Sale.findAll({
+      include: { model: db.Products, as: 'products', through: { attributes: [] } }
+    });
 
     return sales;
   },
