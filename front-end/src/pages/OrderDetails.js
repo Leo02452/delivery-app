@@ -6,8 +6,6 @@ import instance from '../services/axiosInstance';
 function OrderDetails() {
   const { id } = useParams();
   const [sale, setSale] = useState();
-  const [ ]
-  const [ sallerName, setSallerName] = useState();
 
   /*   const sale = {
     seller: 'zé birita',
