@@ -38,7 +38,7 @@ function OrderDetails() {
       return setEnableButton(true);
     };
     isButtonDisabled();
-  }, []);
+  }, [sale?.status]);
 
   return (
     <>
