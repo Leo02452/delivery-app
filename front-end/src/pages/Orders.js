@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import OrderCard from '../components/OrderCard';
-import { OrderMain } from './styles/orders.style';
 import instance from '../services/axiosInstance';
 import { getUser } from '../helpers/userStorage';
+import { OrderMain, OrderContent } from './styles/orders.style';
 
 function Orders() {
   const [orders, setOrders] = useState();
@@ -33,10 +33,12 @@ function Orders() {
         {
           // Realizar o map das sales e mandar pro componente OrderCard
           orders?.map((order, index) => (
-            <OrderCard
-              key={ index }
-              order={ order }
-            />))
+            <OrderContent key={ index }>
+              <OrderCard
+                order={ order }
+              />
+            </OrderContent>
+          ))
         }
       </OrderMain>
     </>

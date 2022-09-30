@@ -1,8 +1,4 @@
 const calculateTotalPrice = (array) => array
-  .reduce((acc, product) => {
-    console.log(`preço: ${product.price}, qtde: ${product.quantity}, acc: ${acc}`);
-
-    return parseFloat((acc + (parseFloat(product.price) * product.quantity)).toFixed(2));
-  }, 0);
+  .reduce((acc, product) => acc + Number(product.price) * product.quantity, 0);
 
 export default calculateTotalPrice;
