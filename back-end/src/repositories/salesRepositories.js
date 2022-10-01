@@ -18,7 +18,7 @@ const salesRepository = {
 
   async list() {
     const sales = await db.Sale.findAll({
-      include: { model: db.Products, as: 'products', through: { attributes: [] } }
+      include: { model: db.Products, as: 'products', through: { attributes: [] } },
     });
 
     return sales;
