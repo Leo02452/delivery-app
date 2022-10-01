@@ -1,8 +1,8 @@
 const p10 = 'var(--p10)';
 
 export const loginLight = {
-  formBackground: 'var(--g4)',
-  formBorder: 'var(--g6)',
+  formBackground: 'var(--g3)',
+  formBorder: 'var(--g5)',
   buttonLoginBackground: 'var(--p8)',
   buttonLoginTextColor: 'var(--p1)',
   buttonLoginBorderColor: 'var(--p4)',
@@ -13,7 +13,7 @@ export const loginLight = {
 
 export const loginDark = {
   formBackground: 'var(--g12)',
-  formBorder: 'var(--g6)',
+  formBorder: 'var(--g10)',
   buttonLoginBackground: 'var(--p8)',
   buttonLoginTextColor: 'var(--p1)',
   buttonLoginBorderColor: 'var(--p4)',
