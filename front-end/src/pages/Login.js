@@ -14,11 +14,27 @@ function Login() {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [loginStatus, setLoginStatus] = useState({ status: '', message: '' });
 
+  function routeHomePageByRole(role) {
+    console.log(role);
+    switch (role) {
+    case 'administrator':
+      console.log('esse case');
+      return navigate('/admin/manage');
+    case 'customer':
+      return navigate('/customer/products');
+    case 'seller':
+      navigate('/seller/orders');
+      break;
+    default:
+      break;
+    }
+  }
+
   useEffect(() => {
     const user = getUser();
 
     if (user) {
-      navigate('/customer/products');
+      routeHomePageByRole(user.role);
     }
   });
 
@@ -35,13 +51,12 @@ function Login() {
 
   async function handleClick() {
     const response = await userLogin({ email, password });
-    // console.log(response);
     if (response.message) {
       setLoginStatus({ status: 'failed', message: response.message });
     } else {
       setLoginStatus({ status: 'success', message: '' });
       saveUser(response.data);
-      navigate('/customer/products');
+      routeHomePageByRole(response.data.role);
     }
   }
 
