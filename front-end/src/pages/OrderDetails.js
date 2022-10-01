@@ -13,7 +13,6 @@ function OrderDetails() {
       try {
         const response = await instance.get(`sales/${id}`);
         // console.log('response', response);
-        // const { products } = sale;
         console.log('response data', response.data?.products);
         setSale(response.data);
       } catch (error) {
