@@ -4,6 +4,7 @@ import userLogin from '../services/login';
 import { MainLoginPage, ContentLoginPage, Form, ButtonLogin,
   ButtonCreate } from './styles/login.style';
 import { getUser, saveUser } from '../helpers/userStorage';
+import Switcher from '../components/Switcher';
 
 function Login() {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ function Login() {
     if (user) {
       navigate('/customer/products');
     }
-  }, []);
+  });
 
   useEffect(() => {
     const enableButton = () => {
@@ -46,6 +47,7 @@ function Login() {
 
   return (
     <MainLoginPage>
+      <Switcher />
       <ContentLoginPage>
         <Form>
           <span>Login</span>

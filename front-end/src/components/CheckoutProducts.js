@@ -4,8 +4,8 @@ import CheckoutTable from './CheckoutTable';
 import { CheckProdMain, CheckProdContent, Table } from './styles/checkoutProducts.styles';
 
 function CheckoutProducts() {
-  const products = useSelector((state) => state.cartProducts);
-  const totalPrice = useSelector((state) => state.totalPrice);
+  const products = useSelector((state) => state.cart.cartProducts);
+  const totalPrice = useSelector((state) => state.cart.totalPrice);
   console.log(products);
 
   return (
