@@ -9,8 +9,8 @@ import { orderCardLight } from '../components/styles/orderCardInfo';
 export default {
   title: 'light',
   general: {
-    background: 'var(--g1)',
-    color: 'var(--g12)',
+    background: 'var(--g11)',
+    color: 'var(--g2)',
   },
   login: loginDark,
   register: registerLight,
