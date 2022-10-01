@@ -15,9 +15,7 @@ const userRepository = {
   async save(user) {
     const createdUser = await db.User.create(user);
 
-    const { password, id, role, ...userWithoutPwdIdAndRole } = createdUser.dataValues;
-    
-    return userWithoutPwdIdAndRole;
+    return createdUser.dataValues;
   },
 
   async findByRole(role) {
