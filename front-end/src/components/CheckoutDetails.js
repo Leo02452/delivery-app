@@ -14,8 +14,8 @@ function CheckoutDetails() {
   const [token, setToken] = useState();
   const [stateMessage, setStateMessage] = useState({ status: '', message: '' });
 
-  const products = useSelector((state) => state.cartProducts);
-  const totalPrice = useSelector((state) => state.totalPrice);
+  const products = useSelector((state) => state.cart.cartProducts);
+  const totalPrice = useSelector((state) => state.cart.totalPrice);
 
   const navigate = useNavigate();
 

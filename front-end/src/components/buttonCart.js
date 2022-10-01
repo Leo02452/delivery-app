@@ -8,7 +8,7 @@ import { ButtonMain, Button } from './styles/buttonCart.styles';
 function ButtonCart() {
   const navigate = useNavigate();
   const [enableButton, setEnableButton] = useState(true);
-  const totalPrice = useSelector((state) => state.totalPrice);
+  const totalPrice = useSelector((state) => state.cart.totalPrice);
 
   useEffect(() => {
     const isButtonDisabled = () => {
