@@ -14,6 +14,12 @@ const usersController = {
 
     res.status(200).json(user);
   },
+
+  async create(req, res) {
+    const createdUser = await usersService.create(req.body);
+
+    res.status(201).json(createdUser);
+  },
 };
 
 module.exports = usersController;

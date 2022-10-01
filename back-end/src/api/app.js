@@ -17,7 +17,7 @@ app.use('/images', express.static('public'));
 app.use('/', authRouter);
 app.use('/', productsRouter);
 app.use('/', salesRouter);
-app.use('/', usersRouter);
+app.use('/users', usersRouter);
 app.use(error);
 
 module.exports = app;
