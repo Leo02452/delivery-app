@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { getUser } from '../helpers/userStorage';
+import createUser from '../services/users';
 
 function CreateUserForm() {
   const [name, setName] = useState('');
@@ -6,7 +8,7 @@ function CreateUserForm() {
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('seller');
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-  console.log(role);
+  const [createUserStatus, setCreateUserStatus] = useState({ status: '', message: '' });
 
   useEffect(() => {
     const enableButton = () => {
@@ -22,54 +24,75 @@ function CreateUserForm() {
     enableButton();
   }, [email, password, name]);
 
+  async function handleClick() {
+    const { token } = getUser();
+    const response = await createUser({ name, email, password, role }, token);
+    if (response.message) {
+      setCreateUserStatus({ status: 'failed', message: response.message });
+    }
+  }
+
   return (
-    <form>
-      <label htmlFor="input-name">
-        Nome
-        <input
-          data-testid="admin_manage__input-name"
-          id="input-name"
-          value={ name }
-          onChange={ (e) => setName(e.target.value) }
-        />
-      </label>
-      <label htmlFor="input-email">
-        Email
-        <input
-          data-testid="admin_manage__input-email"
-          id="input-email"
-          value={ email }
-          onChange={ (e) => setEmail(e.target.value) }
-        />
-      </label>
-      <label htmlFor="input-password">
-        Senha
-        <input
-          data-testid="admin_manage__input-password"
-          id="input-password"
-          value={ password }
-          onChange={ (e) => setPassword(e.target.value) }
-        />
-      </label>
-      <label htmlFor="select-role">
-        Tipo
-        <select
-          data-testid="admin_manage__select-role"
-          id="select-role"
-          onChange={ (e) => setRole(e.target.value) }
+    <>
+      <form>
+        <label htmlFor="input-name">
+          Nome
+          <input
+            data-testid="admin_manage__input-name"
+            id="input-name"
+            value={ name }
+            onChange={ (e) => setName(e.target.value) }
+          />
+        </label>
+        <label htmlFor="input-email">
+          Email
+          <input
+            data-testid="admin_manage__input-email"
+            id="input-email"
+            value={ email }
+            onChange={ (e) => setEmail(e.target.value) }
+          />
+        </label>
+        <label htmlFor="input-password">
+          Senha
+          <input
+            data-testid="admin_manage__input-password"
+            id="input-password"
+            value={ password }
+            onChange={ (e) => setPassword(e.target.value) }
+          />
+        </label>
+        <label htmlFor="select-role">
+          Tipo
+          <select
+            data-testid="admin_manage__select-role"
+            id="select-role"
+            onChange={ (e) => setRole(e.target.value) }
+          >
+            <option value="seller">Vendedor</option>
+            <option value="customer">Cliente</option>
+          </select>
+        </label>
+        <button
+          type="button"
+          data-testid="admin_manage__button-register"
+          disabled={ isButtonDisabled }
+          onClick={ () => handleClick() }
         >
-          <option value="seller">Vendedor</option>
-          <option value="customer">Cliente</option>
-        </select>
-      </label>
-      <button
-        type="button"
-        data-testid="admin_manage__button-register"
-        disabled={ isButtonDisabled }
-      >
-        CADASTRAR
-      </button>
-    </form>
+          CADASTRAR
+        </button>
+      </form>
+      {
+        createUserStatus.status === 'failed'
+        && (
+          <span
+            data-testid="admin_manage__element-invalid-register"
+          >
+            {createUserStatus.message}
+          </span>
+        )
+      }
+    </>
   );
 }
 
