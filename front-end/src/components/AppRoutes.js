@@ -5,6 +5,7 @@ import Products from '../pages/Products';
 import Checkout from '../pages/Checkout';
 import Orders from '../pages/Orders';
 import OrderDetails from '../pages/OrderDetails';
+import UsersManagement from '../pages/UsersManagement';
 
 function AppRoutes() {
   return (
@@ -16,6 +17,7 @@ function AppRoutes() {
       <Route exact path="/" element={ <Navigate to="/login" /> } />
       <Route exact path="/customer/orders" element={ <Orders /> } />
       <Route exact path="/customer/orders/:id" element={ <OrderDetails /> } />
+      <Route exact path="/admin/manage" element={ <UsersManagement /> } />
     </Routes>
   );
 }

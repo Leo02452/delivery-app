@@ -1,3 +1,4 @@
+const md5 = require('md5');
 const userRepository = require('../repositories/usersRepositories');
 
 const usersService = {
@@ -29,6 +30,33 @@ const usersService = {
     }
 
     return user;
+  },
+
+  async create(payload) {
+    const nameAlreadyExists = await userRepository.findByName(payload.name);
+    const emailAlreadyExists = await userRepository.findByEmail(payload.email);
+
+    if (nameAlreadyExists) {
+      const e = new Error('Name is already exists');
+      e.name = 'ConflictError';
+      throw e;
+    }
+
+    if (emailAlreadyExists) {
+      const e = new Error('Email is already exists');
+      e.name = 'ConflictError';
+      throw e;
+    }
+
+    const hashPassword = md5(payload.password);
+
+    const userToSave = { ...payload, password: hashPassword };
+
+    const userCreated = await userRepository.save(userToSave);
+
+    const { password, id, ...userWithoutPasswordAndId } = userCreated;
+
+    return userWithoutPasswordAndId;
   },
 };
 
