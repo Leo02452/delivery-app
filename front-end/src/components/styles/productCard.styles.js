@@ -11,13 +11,15 @@ export const ProductCardMain = styled(BasicMain)`
   flex-direction: column;
   align-items: center;
   position: relative;
-  box-shadow: 1px 4px 7px 0px rgba(0,0,0,0.6);
+  /* box-shadow: 1px 4px 7px 0px rgba(0,0,0,0.6); */
+  box-shadow: ${(props) => props.theme.productCard.shadow};
   border-radius: 8px;
 
   img {
     width: 200px;
     height: 200px;
     object-fit: cover;
+    border-radius: 8px 8px 0 0;
   }
   `;
 
@@ -34,6 +36,7 @@ export const Price = styled.span`
 export const Title = styled.span`
   font-weight: 600;
   padding: 8px;
+  font-size: 12px;
 `;
 
 export const ButtonPlusMinus = styled.button`

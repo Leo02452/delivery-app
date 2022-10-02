@@ -4,6 +4,7 @@ import ProductCard from '../components/ProductCard';
 import instance from '../services/axiosInstance';
 import { ProductMain, ProductContent } from './styles/products.styles';
 import ButtonCart from '../components/buttonCart';
+import Switcher from '../components/Switcher';
 
 function Products() {
   const [products, setProducts] = useState();
@@ -23,6 +24,7 @@ function Products() {
 
   return (
     <>
+      <Switcher />
       <Navbar />
       <ProductMain>
         <ProductContent>

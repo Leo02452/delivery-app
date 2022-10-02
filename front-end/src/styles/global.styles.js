@@ -42,6 +42,10 @@ input::-webkit-inner-spin-button {
       --p9: #145441;
       --p10: #062E22;
 
+      // Secundary color
+      --s: #5B1766;
+
+
       background-color: ${(props) => props.theme.general.background};
       color: ${(props) => props.theme.general.color};
 
