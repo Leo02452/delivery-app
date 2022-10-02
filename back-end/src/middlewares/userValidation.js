@@ -1,7 +1,7 @@
 const { z } = require('zod');
 
 const createUserBody = z.object({
-  name: z.string().max(12),
+  name: z.string(),
   email: z.string().email(),
   password: z.string().min(6),
   role: z.enum(['administrator', 'customer', 'seller']),
