@@ -1,26 +1,67 @@
 import moment from 'moment';
+import { useLocation, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { OrderCardContent, OrdCard, LinkStyled } from './styles/orderCard.styles';
 
 function OrderCard({ order }) {
-  const { id, totalPrice, status, saleDate } = order;
+  const navigate = useNavigate();
+  const { id, totalPrice, status, saleDate, deliveryAddress } = order;
+  const { pathname } = useLocation();
+  const isCustomerPage = pathname === '/customer/orders';
+  console.log(isCustomerPage); // true
+  const role = pathname.split('/')[0];
+  console.log(pathname.split('/')[1]); // retorna vazio
 
   return (
     <OrderCardContent>
-      <LinkStyled to={ `/customer/orders/${id}` }>
+      <LinkStyled
+        to={ isCustomerPage
+          ? `/customer/orders/${id}`
+          : `/seller/orders/${id}` }
+      >
         <OrdCard>
-          <p data-testid={ `customer_orders__element-order-id-${id}` }>
+          <p
+            data-testid={ isCustomerPage
+              ? `customer_orders__element-order-id-${id}`
+              : `seller_orders__element-order-id-${id}` }
+          >
             { id }
           </p>
-          <p data-testid={ `customer_orders__element-delivery-status-${id}` }>
+          <button
+            type="button"
+            onClick={ (e) => {
+              navigate(`${role}/orders/${id}`);
+              console.log(e.target.value); // "/orders/1"
+            } }
+            data-testid={ isCustomerPage
+              ? `customer_orders__element-delivery-status-${id}`
+              : `seller_orders__element-delivery-status-${id}` }
+          >
             { status }
-          </p>
-          <p data-testid={ `customer_orders__element-order-date-${id}` }>
+          </button>
+          <p
+            data-testid={ isCustomerPage
+              ? `customer_orders__element-order-date-${id}`
+              : `seller_orders__element-order-date-${id}` }
+          >
             { moment(saleDate).format('DD/MM/YYYY') }
           </p>
-          <p data-testid={ `customer_orders__element-card-price-${id}` }>
+          <p
+            data-testid={ isCustomerPage
+              ? `customer_orders__element-card-price-${id}`
+              : `seller_orders__element-card-price-${id}` }
+          >
             { totalPrice.replace('.', ',') }
           </p>
+          {
+            isCustomerPage
+            && (
+              <p
+                data-testid={ `seller_orders__element-card-address-${id}` }
+              >
+                { deliveryAddress }
+              </p>)
+          }
         </OrdCard>
       </LinkStyled>
     </OrderCardContent>
@@ -35,5 +76,6 @@ OrderCard.propTypes = ({
     status: PropTypes.string,
     totalPrice: PropTypes.string,
     saleDate: PropTypes.string,
+    deliveryAddress: PropTypes.string,
   }).isRequired,
 });
