@@ -5,6 +5,8 @@ import { productCardLight } from '../components/styles/productCardInfos';
 import { buttonCardLight } from '../components/styles/buttonCartInfos';
 import { checkoutLight } from '../pages/styles/checkoutInfo';
 import { orderCardLight } from '../components/styles/orderCardInfo';
+import { checkDetailsLight } from '../components/styles/checkoutDetailsInfo';
+import { checkProductsLight } from '../components/styles/checkoutProductsInfo';
 
 export default {
   title: 'light',
@@ -18,5 +20,7 @@ export default {
   productCard: productCardLight,
   buttonCard: buttonCardLight,
   checkoutPage: checkoutLight,
+  checkoutDetails: checkDetailsLight,
+  checkoutProducts: checkProductsLight,
   orderCard: orderCardLight,
 };

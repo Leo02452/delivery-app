@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { CheckDetailsMain, Button } from './styles/checkoutDetails.styled';
+import { CheckDetailsContent, Button } from './styles/checkoutDetails.styled';
 import saveSale from '../services/sale';
 import { getUser } from '../helpers/userStorage';
 import axiosInstances from '../services/axiosInstance';
@@ -55,9 +55,9 @@ function CheckoutDetails() {
   }
 
   return (
-    <CheckDetailsMain>
+    <CheckDetailsContent>
       <label htmlFor="seller">
-        Vendedor Responsavel
+        <p>Vendedor Responsavel</p>
         <select
           data-testid="customer_checkout__select-seller"
           onChange={ (e) => setSellerId(e.target.value) }
@@ -74,8 +74,8 @@ function CheckoutDetails() {
         </select>
         <br />
       </label>
-      <labe htmlFor="address">
-        Endereço
+      <label htmlFor="address">
+        <p>Endereço</p>
         <input
           data-testid="customer_checkout__input-address"
           type="text"
@@ -84,9 +84,9 @@ function CheckoutDetails() {
           placeholder="Rua dos Alfineiros, bairro Little Whinging"
           onChange={ (e) => setDeliveryAddress(e.target.value) }
         />
-      </labe>
-      <labe htmlFor="addressNumber">
-        Número
+      </label>
+      <label htmlFor="addressNumber">
+        <p>Número</p>
         <input
           data-testid="customer_checkout__input-address-number"
           type="number"
@@ -96,7 +96,7 @@ function CheckoutDetails() {
           value={ deliveryNumber }
           onChange={ (e) => setDeliveryNumber(e.target.value) }
         />
-      </labe>
+      </label>
       <Button
         data-testid="customer_checkout__button-submit-order"
         type="button"
@@ -108,7 +108,7 @@ function CheckoutDetails() {
         stateMessage.status === 'failed'
         && <p>{ stateMessage.message }</p>
       }
-    </CheckDetailsMain>
+    </CheckDetailsContent>
   );
 }
 

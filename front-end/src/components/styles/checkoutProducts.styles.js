@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { BasicMain, BasicContent } from '../../styles/generals.styles';
 
 export const CheckProdMain = styled(BasicMain)`
-  background-color: ${(props) => props.theme.checkoutPage.background};
+  background-color: ${(props) => props.theme.general.background};
 
   span {
   background: ${(props) => props.theme.buttonCard.background};
@@ -20,16 +20,18 @@ export const CheckProdMain = styled(BasicMain)`
 `;
 
 export const CheckProdContent = styled(BasicContent)`
-  background-color: ${(props) => props.theme.checkoutPage.background};
+  background-color: ${(props) => props.theme.general.background};
 `;
 
 export const Table = styled.table`
   text-align: center;
   /* border: 1px solid black; */
 th {
-  background-color: var(--p5);
+  background-color: ${(props) => props.theme.checkoutProducts.background};
+  /* background-color: red; */
   padding: 12px;
   border-radius: 4px;
+  color: ${(props) => props.theme.checkoutProducts.color};
 }
 td {
   padding: 8px;

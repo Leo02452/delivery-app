@@ -14,10 +14,10 @@ function AppRoutes() {
       <Route path="/register" element={ <Register /> } />
       <Route path="/customer/products" element={ <Products /> } />
       <Route exact path="/customer/checkout" element={ <Checkout /> } />
-      <Route exact path="/" element={ <Navigate to="/login" /> } />
       <Route exact path="/customer/orders" element={ <Orders /> } />
       <Route exact path="/customer/orders/:id" element={ <OrderDetails /> } />
       <Route exact path="/admin/manage" element={ <UsersManagement /> } />
+      <Route exact path="/" element={ <Navigate to="/login" /> } />
     </Routes>
   );
 }
