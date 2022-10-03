@@ -4,22 +4,44 @@ import moment from 'moment';
 import Navbar from '../components/Navbar';
 import instance from '../services/axiosInstance';
 import OrderTable from '../components/OrderTable';
+import { getUser } from '../helpers/userStorage';
 
 function SellerOrderDetails() {
   const { id } = useParams();
   const [sale, setSale] = useState();
+  const [saleStatus, setSaleStatus] = useState();
 
   useEffect(() => {
     async function getSale() {
       try {
         const response = await instance.get(`sales/${id}`);
         setSale(response.data);
+        setSaleStatus(response.data.status);
       } catch (error) {
         setSale(error.response.data);
       }
     }
     getSale();
-  }, [id]);
+  }, []);
+
+  // pensar em como usar o retorno da função
+  useEffect(() => {
+    const user = getUser();
+    async function updateSaleStatus() {
+      try {
+        const response = await axiosInstance.patch(
+          `sales/${id}`,
+          { status: saleStatus },
+          { headers: { Authorization: user.token } },
+        );
+        return response.data;
+      } catch (error) {
+        return error.response.data;
+      }
+    }
+
+    updateSaleStatus();
+  }, [saleStatus]);
 
   return (
     <div>
@@ -38,18 +60,20 @@ function SellerOrderDetails() {
       <p
         data-testid="seller_order_details__element-order-details-label-delivery-status"
       >
-        { sale?.status }
+        { saleStatus }
       </p>
       <button
         type="button"
-        onClick={ () => handleClick() }
+        onClick={ () => setSaleStatus('Preparando') }
+        disabled={ saleStatus !== 'Pendente' }
         data-testid="seller_order_details__button-preparing-check"
       >
         Preparar pedido
       </button>
       <button
         type="button"
-        onClick={ () => handleClick() }
+        onClick={ () => setSaleStatus('Em trânsito') }
+        disabled={ saleStatus !== 'Preparando' }
         data-testid="seller_order_details__button-dispatch-check"
       >
         Saiu para entrega

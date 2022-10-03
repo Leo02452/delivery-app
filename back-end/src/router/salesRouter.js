@@ -16,4 +16,8 @@ route.get('/sales/search',
 route.get('/sales/:id',
   salesController.getById);
 
+route.patch('/sales/:id',
+tokenValidation,
+salesController.editStatus);
+
 module.exports = route;

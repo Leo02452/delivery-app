@@ -28,16 +28,16 @@ async function saveSale(sale, token) {
   }
 }
 
-/*
- {
-  "sellerId": 2,
-  "totalPrice": 123,
-  "deliveryAddress": "erfrfrg",
-  "deliveryNumber": "23",
-  "products":[{
-  "id": 2,
- "quantity": 2,
- }]
- } */
+async function updateSaleStatus(id, statusObj, token) {
+  try {
+    const response = await axiosInstance.patch(`sales/${id}`, statusObj, {
+      headers: { Authorization: token },
+    });
+    return response.data;
+  } catch (error) {
+    return error.response.data;
+  }
+}
 
+export { updateSaleStatus };
 export default saveSale;

@@ -23,6 +23,16 @@ const salesController = {
 
     res.status(200).json(sale);
   },
+
+  async editStatus(req, res) {
+    const { id } = req.params;
+    const { status } = req.body;
+    const { role } = res.locals.userData;
+    await salesService.verifyRoleUser(role, status);
+    const sale = await salesService.editStatus(id, status);
+
+    res.status(200).json(sale);
+  },
 };
 
 module.exports = salesController;

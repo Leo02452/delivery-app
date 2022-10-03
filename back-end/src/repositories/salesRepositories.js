@@ -32,16 +32,11 @@ const salesRepository = {
 
     return sale;
   },
-};
 
-  /* const sale = await db.Sale.findOne({
-      include: [{
-        model: db.Products, as: 'products', through: { attributes: [] } },{
-        model: db.User, as: 'seller', through: { attributes: {
-          exclude: ['password', 'id', 'role', 'email']
-        } }
-      }],
-      where: { id },
-    }); */
+  async editStatus(id, status) {
+    const sale = await db.Sale.update({ status }, { where: { id } });
+    return sale;
+  },
+};
 
 module.exports = salesRepository;
