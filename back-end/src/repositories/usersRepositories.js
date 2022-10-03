@@ -28,8 +28,8 @@ const userRepository = {
     return users;
   },
 
-  async findByPk() {
-    const users = await db.User.findAll({ raw: true });
+  async findByPk(id) {
+    const users = await db.User.findByPk(id, { raw: true });
     return users;
   },
 };

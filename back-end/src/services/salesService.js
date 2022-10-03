@@ -6,6 +6,9 @@ const sequelize = new Sequelize(config.development);
 const salesProductRepository = require('../repositories/salesProductRepositories');
 const salesRepository = require('../repositories/salesRepositories');
 
+const sellerStatus = 'Em Trânsito' || 'Preparando';
+const costumerStatus = 'Entregue';
+    
 const salesService = {
   async create(payload, userId) {
     const { sellerId, totalPrice, deliveryAddress, deliveryNumber, status, products } = payload;
@@ -51,6 +54,36 @@ const salesService = {
       throw e;
     }
 
+    return sale;
+  },
+  
+  /* 
+  vendedor:
+  Pendente - Valor padrão na criação do pedido;
+  Preparando - Status que pode ser alterado pela pessoa vendedora;
+  Em Trânsito - Status que pode ser alterado pela pessoa vendedora;
+
+  cleinte:
+  Entregue - Status que pode ser alterado pelo cliente. */
+  
+  // se role === customer e status === preparando ou pendente ( erro )
+  // se role === seller e status === entregue (erro)
+
+  async verifyRoleUser(role, status) {
+    if (role === 'seller' && sellerStatus !== status) {
+      const e = new Error('Unauthorized status change');
+      e.name = 'UnauthorizedError';
+      throw e;
+    }
+    if (role === 'customer' && costumerStatus !== status) {
+      const e = new Error('Unauthorized status change');
+      e.name = 'UnauthorizedError';
+      throw e;
+    }
+  },
+
+  async editStatus(id, status) {
+    const sale = await salesRepository.editStatus(id, status);
     return sale;
   },
 };
