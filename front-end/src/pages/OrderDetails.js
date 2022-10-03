@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import moment from 'moment';
 import instance from '../services/axiosInstance';
 import OrderTable from '../components/OrderTable';
 
@@ -12,8 +13,6 @@ function OrderDetails() {
     async function getSale() {
       try {
         const response = await instance.get(`sales/${id}`);
-        // console.log('response', response);
-        console.log('response data', response.data?.products);
         setSale(response.data);
       } catch (error) {
         setSale(error.response.data);
@@ -21,7 +20,6 @@ function OrderDetails() {
     }
     getSale();
   }, [id]);
-  // console.log('sale:', sale);
 
   async function handleClick() {
     // Em construção
@@ -55,7 +53,7 @@ function OrderDetails() {
       <p
         data-testid="customer_order_details__element-order-details-label-order-date"
       >
-        { sale?.saleDate }
+        { moment(sale?.seller.saleDate).format('DD/MM/YYYY') }
       </p>
       <p
         data-testid="customer_order_details__element-order-details-label-delivery-status"
@@ -91,7 +89,7 @@ function OrderDetails() {
       <span
         data-testid="customer_order_details__element-order-total-price"
       >
-        { sale?.totalPrice }
+        { sale?.totalPrice.replace('.', ',') }
       </span>
     </>
   );
