@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import moment from 'moment';
 import instance from '../services/axiosInstance';
 import OrderTable from '../components/OrderTable';
+import Navbar from '../components/Navbar';
 
 function OrderDetails() {
   const { id } = useParams();
@@ -39,6 +40,7 @@ function OrderDetails() {
 
   return (
     <>
+      <Navbar />
       <h1>Detalhe do Pedido</h1>
       <p
         data-testid="customer_order_details__element-order-details-label-order-id"
