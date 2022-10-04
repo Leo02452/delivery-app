@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { CheckDetailsContent, Button } from './styles/checkoutDetails.styled';
+import { CheckDetailsContent, Button, LabelAdd } from './styles/checkoutDetails.styled';
 import saveSale from '../services/sale';
 import { getUser } from '../helpers/userStorage';
 import axiosInstances from '../services/axiosInstance';
@@ -74,7 +74,7 @@ function CheckoutDetails() {
         </select>
         <br />
       </label>
-      <label htmlFor="address">
+      <LabelAdd htmlFor="address">
         <p>Endereço</p>
         <input
           data-testid="customer_checkout__input-address"
@@ -84,7 +84,7 @@ function CheckoutDetails() {
           placeholder="Rua dos Alfineiros, bairro Little Whinging"
           onChange={ (e) => setDeliveryAddress(e.target.value) }
         />
-      </label>
+      </LabelAdd>
       <label htmlFor="addressNumber">
         <p>Número</p>
         <input

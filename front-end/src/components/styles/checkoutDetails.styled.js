@@ -16,6 +16,7 @@ export const CheckDetailsContent = styled(BasicContent)`
   }
   select {
     padding: 4px;
+    width: 200px;
   }
   p {
     margin-bottom: 4px;
@@ -23,11 +24,16 @@ export const CheckDetailsContent = styled(BasicContent)`
 `;
 
 export const Button = styled.button`
-  background-color: ${(props) => props.theme.checkoutDetails.button.background};
+  background: ${(props) => props.theme.checkoutDetails.button.background};
+  color: ${(props) => props.theme.checkoutDetails.button.color};
+  /* background-color: red; */
   padding: 0 20px;
   border-radius: 8px;
+  cursor: pointer;
 `;
 
-export const InputAdress = styled.input`
-
+export const LabelAdd = styled.label`
+  input {
+    width: 400px;
+  }
 `;

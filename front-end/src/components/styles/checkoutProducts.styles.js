@@ -38,10 +38,10 @@ td {
   border-radius: 4px;
 }
 tr:nth-child(even) {
-  background-color: var(--g3);
+  background-color: ${(props) => props.theme.checkoutProducts.table.even};
 }
 tr:nth-child(odd) {
-  background-color: var(--g2);
+  background-color: ${(props) => props.theme.checkoutProducts.table.odd};
 }
 button {
   color: red;
