@@ -4,7 +4,7 @@ import { navbarDark } from '../components/styles/navbarInfo';
 import { productCardDark } from '../components/styles/productCardInfos';
 import { buttonCardDark } from '../components/styles/buttonCartInfos';
 import { checkoutDark } from '../pages/styles/checkoutInfo';
-import { orderCardLight } from '../components/styles/orderCardInfo';
+import { orderCardDark } from '../components/styles/orderCardInfo';
 import { checkDetailsDark } from '../components/styles/checkoutDetailsInfo';
 import { checkProductsDark } from '../components/styles/checkoutProductsInfo';
 
@@ -22,5 +22,5 @@ export default {
   checkoutPage: checkoutDark,
   checkoutDetails: checkDetailsDark,
   checkoutProducts: checkProductsDark,
-  orderCard: orderCardLight,
+  orderCard: orderCardDark,
 };

@@ -4,6 +4,7 @@ import OrderCard from '../components/OrderCard';
 import instance from '../services/axiosInstance';
 import { getUser } from '../helpers/userStorage';
 import { OrderMain, OrderContent } from './styles/orders.style';
+import Switcher from '../components/Switcher';
 
 function Orders() {
   const [orders, setOrders] = useState();
@@ -28,6 +29,7 @@ function Orders() {
   console.log(orders);
   return (
     <>
+      <Switcher />
       <Navbar />
       <OrderMain>
         {

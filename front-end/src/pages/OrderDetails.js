@@ -9,6 +9,7 @@ function OrderDetails() {
   const { id } = useParams();
   const [sale, setSale] = useState();
   const [enableButton, setEnableButton] = useState(true);
+  console.log('sale', sale);
 
   useEffect(() => {
     async function getSale() {

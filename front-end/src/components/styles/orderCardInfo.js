@@ -1,11 +1,17 @@
+const g12 = 'var(--g12)';
+
 export const orderCardLight = {
   ordCard: {
-    background: 'var(--g3)',
-    color: 'var(--g12)',
+    background: 'var(--p1)',
+    color: g12,
   },
   p: {
     background: 'var(--g4)',
-    color: 'var(--g12)',
+    color: g12,
+  },
+  button: {
+    background: 'var(--p5)',
+    color: g12,
   },
 };
 
@@ -17,5 +23,9 @@ export const orderCardDark = {
   p: {
     background: 'var(--g3)',
     color: 'var(--g4)',
+  },
+  button: {
+    background: 'var(--g3)',
+    color: 'var(--g12)',
   },
 };
