@@ -24,15 +24,34 @@ export const OrderDetailsContent = styled(BasicContent)`
 
 export const Details = styled.div`
   display: grid;
-  grid-template-columns: 1fr 2fr 2fr 2fr 2fr 3fr;
+  grid-template-columns: 1fr 2fr 2fr 2fr 3fr 3fr;
 
   p {
-    background-color: red;
-    padding: 4px;
+    padding: 8px;
     margin: 4px;
     text-align: center;
     background-color: ${(props) => props.theme.orderDetails.details.background};
     color: ${(props) => props.theme.orderDetails.details.color};
     border-radius: 4px;
   }
+  
+  button {
+    padding: 8px;
+    margin: 4px;
+    background-color: ${(props) => props.theme.orderDetails.button.background};
+    color: ${(props) => props.theme.orderDetails.button.color};
+    border-radius: 4px;
+    border: 0 solid;
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+`;
+
+export const PStatus = styled.div`
+    padding: 8px;
+    margin: 4px;
+    text-align: center;
+    background-color: ${(props) => props.theme.orderDetails.status.background};
+    color: ${(props) => props.theme.orderDetails.status.color};
+    border-radius: 4px;
 `;

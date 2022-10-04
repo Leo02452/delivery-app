@@ -4,8 +4,16 @@ export const orderDetailsLight = {
   background: 'var(--g1)',
   color: g12,
   details: {
-    background: 'var(--g3)',
+    background: 'var(--g5)',
     color: g12,
+  },
+  button: {
+    background: 'var(--g9)',
+    color: 'var(--g3)',
+  },
+  status: {
+    background: 'var(--p9)',
+    color: 'var(--p3)',
   },
 };
 
@@ -15,5 +23,13 @@ export const orderDetailsDark = {
   details: {
     background: 'var(--g9)',
     color: 'var(--g2)',
+  },
+  button: {
+    background: 'var(--g5)',
+    color: g12,
+  },
+  status: {
+    background: 'var(--p9)',
+    color: 'var(--p3)',
   },
 };
