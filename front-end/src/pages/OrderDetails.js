@@ -4,7 +4,7 @@ import moment from 'moment';
 import instance from '../services/axiosInstance';
 import OrderTable from '../components/OrderTable';
 import Navbar from '../components/Navbar';
-import { OrderDetailsContent, Details, PStatus } from './styles/orderDetails.styles';
+import { OrderDetailsContent, Details } from './styles/orderDetails.styles';
 import { Table } from '../components/styles/checkoutProducts.styles';
 import Switcher from '../components/Switcher';
 
@@ -64,12 +64,12 @@ function OrderDetails() {
           >
             { moment(sale?.seller.saleDate).format('DD/MM/YYYY') }
           </p>
-          <PStatus
+          <div
             data-testid="customer_order_details__
             element-order-details-label-delivery-status"
           >
             { sale?.status }
-          </PStatus>
+          </div>
           <button
             type="button"
             disabled={ enableButton }
