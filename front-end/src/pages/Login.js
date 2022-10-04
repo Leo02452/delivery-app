@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import userLogin from '../services/login';
 import { MainLoginPage, ContentLoginPage, Form, ButtonLogin,
-  ButtonCreate } from './styles/login.style';
+  ButtonCreate, Div } from './styles/login.style';
 import { getUser, saveUser } from '../helpers/userStorage';
 import Switcher from '../components/Switcher';
 
@@ -114,6 +114,11 @@ function Login() {
               {loginStatus.message}
             </p>)
         }
+        <Div>
+          <h1>Calango</h1>
+          <h1>Delivery</h1>
+          <h2>SEU APP DE ENTREGAS</h2>
+        </Div>
       </ContentLoginPage>
     </MainLoginPage>
   );

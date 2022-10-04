@@ -1,14 +1,36 @@
 import styled from 'styled-components';
 import { BasicContent, BasicMain, BasicButton } from '../../styles/generals.styles';
+import logoLight from '../../images/logo.png';
 
 const disableValueButton = 0.3;
 
 export const MainLoginPage = styled(BasicMain)`
-  background-color: ${(props) => props.theme.general.background};
+  /* background-color: ${(props) => props.theme.general.background}; */
   height: 100vh;
   display: flex;
   align-content: center;
   align-items: center;
+  background-image: url('../../images/logo.png');
+  background-image: url(${logoLight});
+  background-image: ${(props) => props.theme.login.logo};
+  background-repeat: no-repeat;
+  background-size: contain;
+  /* background-position: center; */
+  /* margin: auto 0; */
+  /* margin-left: 5%; */
+
+  h1 {
+    font-family: 'Chewy', cursive;
+    font-size: 60px;
+    text-align: center;
+    letter-spacing: 8px;
+  }
+  h2 {
+    font-family: 'League Spartan', sans-serif;
+    font-size: 24px;
+    text-align: center;
+    margin-top: 8px;
+  }
 `;
 
 export const ContentLoginPage = styled(BasicContent)`
@@ -24,7 +46,10 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   padding: 24px;
-  border-radius: 4px;
+  border-radius: 8px;
+  /* position: absolute; */
+  /* right: 30%; */
+  /* top: 10%; */
   
   span {
     padding-bottom: 8px;
@@ -50,4 +75,10 @@ export const ButtonCreate = styled(BasicButton)`
   color: ${(props) => props.theme.login.buttonCreateTextColor};
   border-color: ${(props) => props.theme.login.buttonCreateBorderColor};
   cursor: pointer;
+`;
+
+export const Div = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 `;

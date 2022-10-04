@@ -1,3 +1,6 @@
+import logo from '../../images/logo.png';
+import logoWhite from '../../images/logoWhite.png';
+
 const p10 = 'var(--p10)';
 
 export const loginLight = {
@@ -9,6 +12,7 @@ export const loginLight = {
   buttonCreateBackground: 'var(--g4)',
   buttonCreateTextColor: p10,
   buttonCreateBorderColor: p10,
+  logo: `url(${logo})`,
 };
 
 export const loginDark = {
@@ -20,4 +24,5 @@ export const loginDark = {
   buttonCreateBackground: 'var(--g4)',
   buttonCreateTextColor: p10,
   buttonCreateBorderColor: p10,
+  logo: `url(${logoWhite})`,
 };
