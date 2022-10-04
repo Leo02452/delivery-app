@@ -7,6 +7,7 @@ import { checkoutLight } from '../pages/styles/checkoutInfo';
 import { orderCardLight } from '../components/styles/orderCardInfo';
 import { checkDetailsLight } from '../components/styles/checkoutDetailsInfo';
 import { checkProductsLight } from '../components/styles/checkoutProductsInfo';
+import { orderDetailsLight } from '../pages/styles/orderDetailsInfo';
 
 export default {
   title: 'light',
@@ -23,4 +24,5 @@ export default {
   checkoutDetails: checkDetailsLight,
   checkoutProducts: checkProductsLight,
   orderCard: orderCardLight,
+  orderDetails: orderDetailsLight,
 };

@@ -7,6 +7,7 @@ import { checkoutDark } from '../pages/styles/checkoutInfo';
 import { orderCardDark } from '../components/styles/orderCardInfo';
 import { checkDetailsDark } from '../components/styles/checkoutDetailsInfo';
 import { checkProductsDark } from '../components/styles/checkoutProductsInfo';
+import { orderDetailsDark } from '../pages/styles/orderDetailsInfo';
 
 export default {
   title: 'light',
@@ -23,4 +24,5 @@ export default {
   checkoutDetails: checkDetailsDark,
   checkoutProducts: checkProductsDark,
   orderCard: orderCardDark,
+  orderDetails: orderDetailsDark,
 };

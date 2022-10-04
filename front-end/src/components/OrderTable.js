@@ -19,44 +19,42 @@ function OrderTable({
     subTotalMath();
   });
   return (
-    <div>
-      <tr>
-        <td
-          data-testid={
-            `${role}_order_details__element-order-table-item-number-${index}`
-          }
-        >
-          { index + 1 }
+    <tr>
+      <td
+        data-testid={
+          `${role}_order_details__element-order-table-item-number-${index}`
+        }
+      >
+        { index + 1 }
 
-        </td>
-        <td
-          data-testid={ `${role}_order_details__element-order-table-name-${index}` }
-        >
-          {describe}
+      </td>
+      <td
+        data-testid={ `${role}_order_details__element-order-table-name-${index}` }
+      >
+        {describe}
 
-        </td>
-        <td
-          data-testid={ `${role}_order_details__element-order-table-quantity-${index}` }
-        >
-          {quantity}
+      </td>
+      <td
+        data-testid={ `${role}_order_details__element-order-table-quantity-${index}` }
+      >
+        {quantity}
 
-        </td>
-        <td
-          data-testid={
-            `${role}_order_details__element-order-table-unit-price-${index}`
-          }
-        >
-          { unitValue.replace('.', ',') }
+      </td>
+      <td
+        data-testid={
+          `${role}_order_details__element-order-table-unit-price-${index}`
+        }
+      >
+        { unitValue.replace('.', ',') }
 
-        </td>
-        <td
-          data-testid={ `${role}_order_details__element-order-table-sub-total-${index}` }
-        >
-          {subTotal.toString().replace('.', ',') }
+      </td>
+      <td
+        data-testid={ `${role}_order_details__element-order-table-sub-total-${index}` }
+      >
+        {subTotal.toString().replace('.', ',') }
 
-        </td>
-      </tr>
-    </div>
+      </td>
+    </tr>
   );
 }
 

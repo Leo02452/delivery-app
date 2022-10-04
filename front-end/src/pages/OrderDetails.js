@@ -4,6 +4,9 @@ import moment from 'moment';
 import instance from '../services/axiosInstance';
 import OrderTable from '../components/OrderTable';
 import Navbar from '../components/Navbar';
+import { OrderDetailsContent, Details } from './styles/orderDetails.styles';
+import { Table } from '../components/styles/checkoutProducts.styles';
+import Switcher from '../components/Switcher';
 
 function OrderDetails() {
   const { id } = useParams();
@@ -41,59 +44,65 @@ function OrderDetails() {
 
   return (
     <>
+      <Switcher />
       <Navbar />
-      <h1>Detalhe do Pedido</h1>
-      <p
-        data-testid="customer_order_details__element-order-details-label-order-id"
-      >
-        { sale?.id }
-      </p>
-      <p
-        data-testid="customer_order_details__element-order-details-label-seller-name"
-      >
-        { sale?.seller.name }
-      </p>
-      <p
-        data-testid="customer_order_details__element-order-details-label-order-date"
-      >
-        { moment(sale?.seller.saleDate).format('DD/MM/YYYY') }
-      </p>
-      <p
-        data-testid="customer_order_details__element-order-details-label-delivery-status"
-      >
-        { sale?.status }
-      </p>
-      <button
-        type="button"
-        disabled={ enableButton }
-        onClick={ () => handleClick() }
-        data-testid="customer_order_details__button-delivery-check"
-      >
-        Marcar como entregue
-      </button>
-      <table>
-        <tr>
-          <th>Item</th>
-          <th>Descrição</th>
-          <th>Quantidade</th>
-          <th>Valor Unitário</th>
-          <th>Sub-total</th>
-        </tr>
-        { sale?.products.map((prd, index) => (
-          <OrderTable
-            key={ index }
-            index={ index }
-            describe={ prd.name }
-            quantity={ prd.SalesProduct.quantity }
-            unitValue={ prd.price }
-          />
-        ))}
-      </table>
-      <span
-        data-testid="customer_order_details__element-order-total-price"
-      >
-        { sale?.totalPrice.replace('.', ',') }
-      </span>
+      <OrderDetailsContent>
+        <h1>Detalhe do Pedido</h1>
+        <Details>
+          <p
+            data-testid="customer_order_details__element-order-details-label-order-id"
+          >
+            { sale?.id }
+          </p>
+          <p
+            data-testid="customer_order_details__element-order-details-label-seller-name"
+          >
+            { sale?.seller.name }
+          </p>
+          <p
+            data-testid="customer_order_details__element-order-details-label-order-date"
+          >
+            { moment(sale?.seller.saleDate).format('DD/MM/YYYY') }
+          </p>
+          <p
+            data-testid="customer_order_details__
+            element-order-details-label-delivery-status"
+          >
+            { sale?.status }
+          </p>
+          <button
+            type="button"
+            disabled={ enableButton }
+            onClick={ () => handleClick() }
+            data-testid="customer_order_details__button-delivery-check"
+          >
+            Marcar como entregue
+          </button>
+        </Details>
+        <Table>
+          <tr>
+            <th>Item</th>
+            <th>Descrição</th>
+            <th>Quantidade</th>
+            <th>Valor Unitário</th>
+            <th>Sub-total</th>
+          </tr>
+          { sale?.products.map((prd, index) => (
+            <OrderTable
+              key={ index }
+              index={ index }
+              describe={ prd.name }
+              quantity={ prd.SalesProduct.quantity }
+              unitValue={ prd.price }
+            />
+          ))}
+        </Table>
+        <span
+          data-testid="customer_order_details__element-order-total-price"
+        >
+          { sale?.totalPrice.replace('.', ',') }
+        </span>
+      </OrderDetailsContent>
     </>
   );
 }
