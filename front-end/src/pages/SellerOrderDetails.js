@@ -29,14 +29,14 @@ function SellerOrderDetails() {
     const user = getUser();
     async function updateSaleStatus() {
       try {
-        const response = await axiosInstance.patch(
+        const response = await instance.patch(
           `sales/${id}`,
           { status: saleStatus },
           { headers: { Authorization: user.token } },
         );
-        return response.data;
+        console.log(response);
       } catch (error) {
-        return error.response.data;
+        console.log(error.response.data);
       }
     }
 
@@ -72,7 +72,7 @@ function SellerOrderDetails() {
       </button>
       <button
         type="button"
-        onClick={ () => setSaleStatus('Em trânsito') }
+        onClick={ () => setSaleStatus('Em Trânsito') }
         disabled={ saleStatus !== 'Preparando' }
         data-testid="seller_order_details__button-dispatch-check"
       >
