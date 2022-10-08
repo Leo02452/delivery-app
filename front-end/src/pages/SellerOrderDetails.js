@@ -39,8 +39,9 @@ function SellerOrderDetails() {
         console.log(error.response.data);
       }
     }
-
-    updateSaleStatus();
+    if (saleStatus) {
+      updateSaleStatus();
+    }
   }, [saleStatus]);
 
   return (
