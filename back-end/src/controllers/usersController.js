@@ -20,6 +20,14 @@ const usersController = {
 
     res.status(201).json(createdUser);
   },
+
+  async delete(req, res) {
+    const { id } = req.params;
+
+    await usersService.delete(id);
+
+    res.sendStatus(204);
+  },
 };
 
 module.exports = usersController;
