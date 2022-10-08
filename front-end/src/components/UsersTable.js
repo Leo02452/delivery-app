@@ -1,6 +1,19 @@
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { getUser } from '../helpers/userStorage';
+import { asyncFetchUsers } from '../redux/reduces/userReduce';
+import { deleteUser } from '../services/users';
 
 function UsersTable({ users }) {
+  const dispatch = useDispatch();
+
+  async function handleDelete(userId) {
+    const user = getUser();
+
+    await deleteUser(userId, user.token);
+    dispatch(asyncFetchUsers());
+  }
+
   return (
     <>
       <h2>Lista de usuários</h2>
@@ -40,7 +53,12 @@ function UsersTable({ users }) {
               <td
                 data-testid={ `admin_manage__element-user-table-remove-${index}` }
               >
-                Excluir
+                <button
+                  type="button"
+                  onClick={ () => handleDelete(user.id) }
+                >
+                  Excluir
+                </button>
               </td>
             </tr>
           )) }
@@ -53,6 +71,7 @@ function UsersTable({ users }) {
 UsersTable.propTypes = {
   users: PropTypes.arrayOf(
     PropTypes.shape({
+      id: PropTypes.number,
       name: PropTypes.string,
       email: PropTypes.string,
       role: PropTypes.string,
