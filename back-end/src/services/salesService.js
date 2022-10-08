@@ -5,9 +5,6 @@ const sequelize = new Sequelize(config.development);
 
 const salesProductRepository = require('../repositories/salesProductRepositories');
 const salesRepository = require('../repositories/salesRepositories');
-
-const sellerStatus = 'Em Trânsito' || 'Preparando';
-const costumerStatus = 'Entregue';
     
 const salesService = {
   async create(payload, userId) {
@@ -69,13 +66,20 @@ const salesService = {
   // se role === customer e status === preparando ou pendente ( erro )
   // se role === seller e status === entregue (erro)
 
+  verifySellerChangeAuthorization(role, status) {
+    return (role === 'seller'
+    && (status !== 'Em Trânsito' && status !== 'Preparando'));
+  },
+
+  verifyCustomerChangeAuthorization(role, status) {
+    return (role === 'customer' && status !== 'Entregue');
+  },
+
   async verifyRoleUser(role, status) {
-    if (role === 'seller' && sellerStatus !== status) {
-      const e = new Error('Unauthorized status change');
-      e.name = 'UnauthorizedError';
-      throw e;
-    }
-    if (role === 'customer' && costumerStatus !== status) {
+    const isSellerUnauthorized = this.verifySellerChangeAuthorization(role, status);
+    const isCustomerUnauthorized = this.verifyCustomerChangeAuthorization(role, status);
+    console.log(isSellerUnauthorized, isCustomerUnauthorized);
+    if (isSellerUnauthorized || isCustomerUnauthorized) {    
       const e = new Error('Unauthorized status change');
       e.name = 'UnauthorizedError';
       throw e;
