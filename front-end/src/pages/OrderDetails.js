@@ -7,6 +7,8 @@ import { OrderDetailsContent } from './styles/orderDetails.styles';
 import { Table } from '../components/styles/checkoutProducts.styles';
 import Switcher from '../components/Switcher';
 import OrderInfo from '../components/OrderInfo';
+import { updateSaleStatus } from '../services/sale';
+import { getUser } from '../helpers/userStorage';
 
 function OrderDetails() {
   const { id } = useParams();
@@ -26,14 +28,16 @@ function OrderDetails() {
   }, [id]);
 
   async function handleClick() {
-    // Em construção
-    // Função responsável por alterar o estado da venda para entregue (rascunho)
-    console.log('Finge que ta mudando o estado');
+    setSale({ ...sale, status: 'Entregue' });
+
+    const user = getUser();
+
+    await updateSaleStatus(id, { status: 'Entregue' }, user.token);
   }
 
   useEffect(() => {
     const isButtonDisabled = () => {
-      if (sale?.status === 'Entregue') {
+      if (sale?.status === 'Em Trânsito') {
         return setEnableButton(false);
       }
       return setEnableButton(true);
