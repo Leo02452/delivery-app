@@ -10,4 +10,16 @@ async function createUser(user, token) {
     return error.response.data;
   }
 }
+
+export async function deleteUser(userId, token) {
+  try {
+    const response = await axiosInstance.delete(`users/${userId}`, { headers: {
+      authorization: token,
+    } });
+    return response.data;
+  } catch (error) {
+    return error.response.data;
+  }
+}
+
 export default createUser;

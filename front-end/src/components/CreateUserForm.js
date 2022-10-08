@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { getUser } from '../helpers/userStorage';
+import { asyncFetchUsers } from '../redux/reduces/userReduce';
 import createUser from '../services/users';
 
 function CreateUserForm() {
+  const dispatch = useDispatch();
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -27,6 +31,7 @@ function CreateUserForm() {
   async function handleClick() {
     const { token } = getUser();
     const response = await createUser({ name, email, password, role }, token);
+    dispatch(asyncFetchUsers());
     if (response.message) {
       setCreateUserStatus({ status: 'failed', message: response.message });
     }

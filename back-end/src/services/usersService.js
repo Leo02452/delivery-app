@@ -58,6 +58,10 @@ const usersService = {
 
     return userWithoutPasswordAndId;
   },
+
+  async delete(id) {
+    await userRepository.delete(id);
+  },
 };
 
 module.exports = usersService;
