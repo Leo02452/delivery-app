@@ -1,18 +1,19 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import moment from 'moment';
 import instance from '../services/axiosInstance';
 import OrderTable from '../components/OrderTable';
 import Navbar from '../components/Navbar';
-import { OrderDetailsContent, Details } from './styles/orderDetails.styles';
+import { OrderDetailsContent } from './styles/orderDetails.styles';
 import { Table } from '../components/styles/checkoutProducts.styles';
 import Switcher from '../components/Switcher';
+import OrderInfo from '../components/OrderInfo';
+import { updateSaleStatus } from '../services/sale';
+import { getUser } from '../helpers/userStorage';
 
 function OrderDetails() {
   const { id } = useParams();
   const [sale, setSale] = useState();
   const [enableButton, setEnableButton] = useState(true);
-  console.log('sale', sale);
 
   useEffect(() => {
     async function getSale() {
@@ -27,14 +28,16 @@ function OrderDetails() {
   }, [id]);
 
   async function handleClick() {
-    // Em construção
-    // Função responsável por alterar o estado da venda para entregue (rascunho)
-    console.log('Finge que ta mudando o estado');
+    setSale({ ...sale, status: 'Entregue' });
+
+    const user = getUser();
+
+    await updateSaleStatus(id, { status: 'Entregue' }, user.token);
   }
 
   useEffect(() => {
     const isButtonDisabled = () => {
-      if (sale?.status === 'Entregue') {
+      if (sale?.status === 'Em Trânsito') {
         return setEnableButton(false);
       }
       return setEnableButton(true);
@@ -48,37 +51,15 @@ function OrderDetails() {
       <Navbar />
       <OrderDetailsContent>
         <h1>Detalhe do Pedido</h1>
-        <Details>
-          <p
-            data-testid="customer_order_details__element-order-details-label-order-id"
-          >
-            { sale?.id }
-          </p>
-          <p
-            data-testid="customer_order_details__element-order-details-label-seller-name"
-          >
-            { sale?.seller.name }
-          </p>
-          <p
-            data-testid="customer_order_details__element-order-details-label-order-date"
-          >
-            { moment(sale?.seller.saleDate).format('DD/MM/YYYY') }
-          </p>
-          <div
-            data-testid="customer_order_details__
-            element-order-details-label-delivery-status"
-          >
-            { sale?.status }
-          </div>
-          <button
-            type="button"
-            disabled={ enableButton }
-            onClick={ () => handleClick() }
-            data-testid="customer_order_details__button-delivery-check"
-          >
-            Marcar como entregue
-          </button>
-        </Details>
+        <OrderInfo sale={ sale } />
+        <button
+          type="button"
+          disabled={ enableButton }
+          onClick={ () => handleClick() }
+          data-testid="customer_order_details__button-delivery-check"
+        >
+          Marcar como entregue
+        </button>
         <Table>
           <tr>
             <th>Item</th>
