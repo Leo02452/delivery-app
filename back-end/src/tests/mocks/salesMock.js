@@ -1,4 +1,5 @@
 const saleMock = {
+  id: 1,
   userId: 1,
   sellerId: 2,
   totalPrice: 10.00,
