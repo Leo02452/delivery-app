@@ -5,6 +5,7 @@ chai.use(require('chai-http'));
 
 const app = require('../api/app');
 
+const jwt = require('jsonwebtoken');
 const { User } = require('../database/models');
 const {
   customerMock,
@@ -26,4 +27,17 @@ describe('Users', () => {
     });
   });
 
+  describe('Delete', () => {
+    it('should return a 204 status code and an empty body', async () => {
+      sinon.stub(User, "destroy").resolves(true);
+      sinon.stub(jwt, "verify").returns({ role: 'administrator' })
+
+      const response = await chai.request(app)
+        .delete('/users/1')
+        .set('Authorization', 'any-token');
+
+      chai.expect(response.status).to.be.eq(204);
+      chai.expect(response.body).to.be.deep.equal({});
+    });
+  });
 });
