@@ -21,9 +21,11 @@ const createdCustomerBody = {
   password: 'any-password',
 }
 
+const { password, ...customerWithoutPassword } = customerMock;
 module.exports = {
   customerMock,
   validBody,
   createdCustomerBody,
   createdCustomerMock,
+  customerWithoutPassword,
 };
