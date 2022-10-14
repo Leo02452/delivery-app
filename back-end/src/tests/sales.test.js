@@ -7,7 +7,7 @@ const app = require('../api/app');
 
 const jwt = require('jsonwebtoken');
 const { Sale } = require('../database/models');
-const { saleMock, updatedSaleMock } = require('./mocks/salesMock');
+const { saleMock, updatedSaleMock, createdSaleMock, createSaleBody } = require('./mocks/salesMock');
 
 
 describe('Sales', () => {
@@ -49,6 +49,21 @@ describe('Sales', () => {
 
       chai.expect(response.status).to.be.eq(200);
       chai.expect(response.body).to.be.deep.equal(updatedSaleMock);
+    });
+  });
+
+  describe('Create', () => {
+    it('should return a 201 status code and the new sale id', async () => {
+      sinon.stub(Sale, "create").resolves({ dataValues: createdSaleMock });
+      sinon.stub(jwt, "verify").returns({ id: 1 });
+
+      const response = await chai.request(app)
+        .post('/sales')
+        .send(createSaleBody)
+        .set('Authorization', 'any-seller-token');
+
+      chai.expect(response.status).to.be.eq(201);
+      chai.expect(response.body).to.be.deep.equal(2);
     });
   });
 });
