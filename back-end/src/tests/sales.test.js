@@ -7,7 +7,7 @@ const app = require('../api/app');
 
 const jwt = require('jsonwebtoken');
 const { Sale } = require('../database/models');
-const { saleMock, updatedSaleMock, createdSaleMock, createSaleBody } = require('./mocks/salesMock');
+const { saleMock, updatedSaleMock, createdSaleMock, createSaleBody, invalidCreateSaleBody } = require('./mocks/salesMock');
 
 
 describe('Sales', () => {
@@ -64,6 +64,28 @@ describe('Sales', () => {
 
       chai.expect(response.status).to.be.eq(201);
       chai.expect(response.body).to.be.deep.equal(2);
+    });
+
+    it('should return a UNAUTHORIZED status code if the token is invalid', async () => {
+      const response = await chai.request(app)
+        .post('/sales')
+        .send(invalidCreateSaleBody)
+        .set('Authorization', 'invalid-token');
+
+      chai.expect(response.status).to.be.eq(401);
+      chai.expect(response.body).to.be.deep.equal({ message: 'Invalid token' });
+    });
+
+    it('should return a BAD REQUEST status code if the body is invalid', async () => {
+      sinon.stub(jwt, "verify").returns({ id: 1 });
+
+      const response = await chai.request(app)
+        .post('/sales')
+        .send(invalidCreateSaleBody)
+        .set('Authorization', 'any-seller-token');
+
+      chai.expect(response.status).to.be.eq(400);
+      chai.expect(response.body).to.be.deep.equal({ message: 'deliveryAddress: Expected string, received number' });
     });
   });
 });

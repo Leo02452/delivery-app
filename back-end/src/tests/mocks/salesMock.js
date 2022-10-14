@@ -23,6 +23,11 @@ const createSaleBody = {
   products: [{ id: 1, quantity: 10 }, { id: 2, quantity: 5 }]
 };
 
+const invalidCreateSaleBody = {
+  ...createSaleBody,
+  deliveryAddress: 5
+}
+
 const createdSaleMock = {
   ...createSaleBody,
   id: 2,
@@ -34,5 +39,6 @@ module.exports = {
   saleMock,
   updatedSaleMock,
   createSaleBody,
-  createdSaleMock
+  createdSaleMock,
+  invalidCreateSaleBody
 };
