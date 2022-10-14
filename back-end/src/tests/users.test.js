@@ -9,7 +9,10 @@ const jwt = require('jsonwebtoken');
 const { User } = require('../database/models');
 const {
   customerMock,
+  createdCustomerMock,
   customerWithoutPassword,
+  customerWithoutPasswordAndId,
+  createdUserBody
 } = require('./mocks/userMock');
 
 describe('Users', () => {
@@ -38,6 +41,24 @@ describe('Users', () => {
 
       chai.expect(response.status).to.be.eq(204);
       chai.expect(response.body).to.be.deep.equal({});
+    });
+  });
+  describe('Create', () => {
+    it('should return a 201 status code and the user with a token', async () => {
+      sinon.stub(User, "findOne")
+      .onFirstCall().resolves(null)
+      .onSecondCall().resolves(null)
+
+      sinon.stub(User, "create").resolves({ dataValues: createdCustomerMock });
+      sinon.stub(jwt, "verify").returns({ role: 'administrator' })
+
+      const response = await chai.request(app)
+        .post('/users')
+        .send(createdUserBody)
+        .set('Authorization', 'any-token');
+
+      chai.expect(response.status).to.be.eq(201);
+      chai.expect(response.body).to.be.deep.equal(customerWithoutPasswordAndId);
     });
   });
 });
