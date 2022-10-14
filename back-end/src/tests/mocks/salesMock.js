@@ -6,7 +6,12 @@ const saleMock = {
   deliveryAddress: 'any-address',
   deliveryNumber: 'any-delivery-number',
   saleDate: 'any-date',
-  status: 'pendente'
+  status: 'Pendente'
 };
 
-module.exports = { saleMock };
+const updatedSaleMock = {
+  ...saleMock,
+  status: 'Preparando'
+}
+
+module.exports = { saleMock, updatedSaleMock };
