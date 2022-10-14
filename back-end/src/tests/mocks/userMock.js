@@ -10,7 +10,20 @@ const validBody = {
   password: 'any-password'
 }
 
+const createdCustomerMock = {
+  id: 1,
+  ...customerMock
+}
+
+const createdCustomerBody = {
+  name: 'any-name',
+  email: 'any-email@email.com',
+  password: 'any-password',
+}
+
 module.exports = {
   customerMock,
   validBody,
+  createdCustomerBody,
+  createdCustomerMock,
 };
