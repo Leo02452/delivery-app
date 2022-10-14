@@ -42,7 +42,7 @@ const authService = {
     await userRepository.save(userToSave);
     
     const user = await userRepository.findByEmail(payload.email);
-    // console.log('user: ', user);
+    
     const { password, id, ...userWithoutPasswordAndId } = user;
     const token = jwtService.createToken({ ...userWithoutPasswordAndId, id });
     

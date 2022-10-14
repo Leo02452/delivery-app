@@ -78,7 +78,6 @@ const salesService = {
   async verifyRoleUser(role, status) {
     const isSellerUnauthorized = this.verifySellerChangeAuthorization(role, status);
     const isCustomerUnauthorized = this.verifyCustomerChangeAuthorization(role, status);
-    console.log(isSellerUnauthorized, isCustomerUnauthorized);
     if (isSellerUnauthorized || isCustomerUnauthorized) {    
       const e = new Error('Unauthorized status change');
       e.name = 'UnauthorizedError';
