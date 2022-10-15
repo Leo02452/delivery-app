@@ -14,7 +14,8 @@ const {
   customerWithoutPasswordAndId,
   createdUserBody,
   sellerMock,
-  sellerWithoutPassword
+  sellerWithoutPassword,
+  userAlreadyCreatedBody
 } = require('./mocks/userMock');
 
 describe('Users', () => {
@@ -73,6 +74,21 @@ describe('Users', () => {
 
       chai.expect(response.status).to.be.eq(201);
       chai.expect(response.body).to.be.deep.equal(customerWithoutPasswordAndId);
+    });
+
+    it('should return a CONFLICT status code if email is already registered', async () => {
+      sinon.stub(User, "findOne").resolves(null)
+      .onSecondCall().resolves(true);
+
+      sinon.stub(jwt, "verify").returns({ role: 'administrator' })
+
+      const response = await chai.request(app)
+        .post('/users')
+        .send({ ...userAlreadyCreatedBody, role: 'seller' })
+        .set('Authorization', 'any-token');
+
+      chai.expect(response.status).to.be.eq(409);
+      chai.expect(response.body).to.be.deep.equal({ message: 'Email is already exists' });
     });
   });
 });
