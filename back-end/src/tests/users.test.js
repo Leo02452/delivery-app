@@ -12,7 +12,9 @@ const {
   createdCustomerMock,
   customerWithoutPassword,
   customerWithoutPasswordAndId,
-  createdUserBody
+  createdUserBody,
+  sellerMock,
+  sellerWithoutPassword
 } = require('./mocks/userMock');
 
 describe('Users', () => {
@@ -27,6 +29,18 @@ describe('Users', () => {
 
       chai.expect(response.status).to.be.eq(200);
       chai.expect(response.body).to.be.deep.equal([customerWithoutPassword]);
+    });
+  });
+
+  describe('List sellers', () => {
+    it('should return a 200 status code and list of users', async () => {
+      sinon.stub(User, "findAll").resolves([sellerMock]);
+
+      const response = await chai.request(app)
+        .get('/users/search?r=seller');
+
+      chai.expect(response.status).to.be.eq(200);
+      chai.expect(response.body).to.be.deep.equal([sellerWithoutPassword]);
     });
   });
 

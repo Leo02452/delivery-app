@@ -5,6 +5,13 @@ const customerMock = {
   role: 'customer'
 }
 
+const sellerMock = {
+  name: 'any-name',
+  email: 'any-email@email.com',
+  password: '9b55aff2e8388c3601e2f7440320c813',
+  role: 'seller'
+}
+
 const validBody = {
   email: 'any-email@email.com',
   password: 'any-password'
@@ -30,6 +37,7 @@ const createdUserBody = {
 
 const { password, ...customerWithoutPassword } = customerMock;
 const { password: pwd, id, ...customerWithoutPasswordAndId } = customerMock;
+const { password: pass, ...sellerWithoutPassword } = sellerMock;
 
 module.exports = {
   customerMock,
@@ -38,5 +46,7 @@ module.exports = {
   createdCustomerMock,
   customerWithoutPassword,
   customerWithoutPasswordAndId,
-  createdUserBody
+  createdUserBody,
+  sellerMock,
+  sellerWithoutPassword
 };
