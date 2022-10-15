@@ -9,9 +9,10 @@ const jwt = require('jsonwebtoken');
 const { User } = require('../database/models');
 const {
   customerMock,
-  validBody,
+  validLoginBody,
   createdCustomerBody,
-  createdCustomerMock
+  createdCustomerMock,
+  invalidLoginBody
 } = require('./mocks/userMock');
 
 describe('Authorization', () => {
@@ -24,7 +25,7 @@ describe('Authorization', () => {
 
       const response = await chai.request(app)
         .post('/login')
-        .send(validBody);
+        .send(validLoginBody);
 
       chai.expect(response.status).to.be.eq(200);
       chai.expect(response.body).to.be.deep.equal({
@@ -33,6 +34,17 @@ describe('Authorization', () => {
         role: customerMock.role,
         token: 'any-token'
       })
+    });
+
+    it('should return a NOT FOUND status code if a invalid email or password is set', async () => {
+      sinon.stub(User, "findOne").resolves(null);
+
+      const response = await chai.request(app)
+        .post('/login')
+        .send(invalidLoginBody);
+
+      chai.expect(response.status).to.be.eq(404);
+      chai.expect(response.body).to.be.deep.equal({ message: 'Incorrect email or password' });
     });
   });
 

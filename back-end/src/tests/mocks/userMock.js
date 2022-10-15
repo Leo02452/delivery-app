@@ -12,8 +12,13 @@ const sellerMock = {
   role: 'seller'
 }
 
-const validBody = {
+const validLoginBody = {
   email: 'any-email@email.com',
+  password: 'any-password'
+}
+
+const invalidLoginBody = {
+  email: 'invalid@email.com',
   password: 'any-password'
 }
 
@@ -41,7 +46,8 @@ const { password: pass, ...sellerWithoutPassword } = sellerMock;
 
 module.exports = {
   customerMock,
-  validBody,
+  validLoginBody,
+  invalidLoginBody,
   createdCustomerBody,
   createdCustomerMock,
   customerWithoutPassword,
