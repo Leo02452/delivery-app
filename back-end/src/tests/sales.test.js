@@ -23,6 +23,16 @@ describe('Sales', () => {
       chai.expect(response.status).to.be.eq(200);
       chai.expect(response.body).to.be.deep.equal([saleMock]);
     });
+
+    it('should return a 200 status code and a list of user sales', async () => {
+      sinon.stub(Sale, "findAll").resolves([saleMock]);
+
+      const response = await chai.request(app)
+        .get('/sales/search?userId=1');
+
+      chai.expect(response.status).to.be.eq(200);
+      chai.expect(response.body).to.be.deep.equal([saleMock]);
+    });
   });
 
   describe('Find by id', () => {
