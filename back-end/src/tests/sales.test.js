@@ -45,6 +45,16 @@ describe('Sales', () => {
       chai.expect(response.status).to.be.eq(200);
       chai.expect(response.body).to.be.deep.equal(saleMock);
     });
+
+    it('should return a NOT FOUND status code if the sale id is not exists', async () => {
+      sinon.stub(Sale, "findOne").resolves(null);
+
+      const response = await chai.request(app)
+        .get('/sales/0');
+
+      chai.expect(response.status).to.be.eq(404);
+      chai.expect(response.body).to.be.deep.equal({ message: 'Sale not found' });
+    });
   });
 
   describe('Update status', () => {
