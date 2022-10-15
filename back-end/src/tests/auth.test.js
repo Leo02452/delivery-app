@@ -12,7 +12,8 @@ const {
   validLoginBody,
   createdCustomerBody,
   createdCustomerMock,
-  invalidLoginBody
+  invalidLoginBody,
+  userAlreadyCreatedBody
 } = require('./mocks/userMock');
 
 describe('Authorization', () => {
@@ -68,6 +69,18 @@ describe('Authorization', () => {
         role: createdCustomerMock.role,
         token: 'any-token'
       })
+    });
+
+    it('should return a CONFLICT status code if email is already registered', async () => {
+      sinon.stub(User, "findOne").resolves(true)
+      .onSecondCall().resolves(null);
+
+      const response = await chai.request(app)
+        .post('/register')
+        .send(userAlreadyCreatedBody);
+
+      chai.expect(response.status).to.be.eq(409);
+      chai.expect(response.body).to.be.deep.equal({ message: 'Name or email already exists' });
     });
   });
 });

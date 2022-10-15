@@ -33,6 +33,12 @@ const createdCustomerBody = {
   password: 'any-password',
 }
 
+const userAlreadyCreatedBody = {
+  name: 'any-name',
+  email: 'alreadyregistered@email.com',
+  password: 'any-password'
+}
+
 const createdUserBody = {
   name: 'any-name',
   email: 'any-email@email.com',
@@ -48,6 +54,7 @@ module.exports = {
   customerMock,
   validLoginBody,
   invalidLoginBody,
+  userAlreadyCreatedBody,
   createdCustomerBody,
   createdCustomerMock,
   customerWithoutPassword,
