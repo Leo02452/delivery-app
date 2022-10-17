@@ -65,8 +65,8 @@ function Login() {
       <Switcher />
       <ContentLoginPage>
         <Form>
-          <span>Login</span>
           <label htmlFor="email">
+            Email
             <input
               type="text"
               id="email"
@@ -77,8 +77,8 @@ function Login() {
               onChange={ ({ target }) => setEmail(target.value) }
             />
           </label>
-          <span>Password</span>
           <label htmlFor="password">
+            Password
             <input
               id="password"
               type="password"
