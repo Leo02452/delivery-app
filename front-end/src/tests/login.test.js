@@ -36,6 +36,7 @@ describe('Login', () => {
       expect(navigate).toHaveBeenCalledWith('/register');
     });
   });
+
   describe('API request error', () => {
     it('should show a error message if API returns an error', async () => {
       const ErrorResponseMock = { response: { status: 400, data: { message: 'any-error' } } };
@@ -56,9 +57,9 @@ describe('Login', () => {
       
       expect(screen.getByTestId('common_login__element-invalid-email')).toBeInTheDocument();
     });
-  });  
+  });
 
-  describe('on success', () => {
+  describe('API request successful', () => {
     beforeEach(() => jest.spyOn(router, 'useNavigate').mockImplementation(() => navigate));
 
     it('should navigate to customer homepage', async () => {
@@ -81,7 +82,7 @@ describe('Login', () => {
       expect(navigate).toHaveBeenCalledWith('/customer/products');
     });
     
-    it('should navigate to customer homepage', async () => {
+    it('should navigate to seller homepage', async () => {
       const responseMock = { status: 200, data: sellerMock };
       axiosInstance.post.mockResolvedValueOnce(responseMock);
       
@@ -101,7 +102,7 @@ describe('Login', () => {
       expect(navigate).toHaveBeenCalledWith('/seller/orders');
     });
 
-    it('should navigate to customer homepage', async () => {
+    it('should navigate to adm homepage', async () => {
       const responseMock = { status: 200, data: administratorMock };
       axiosInstance.post.mockResolvedValueOnce(responseMock);
       
@@ -120,5 +121,5 @@ describe('Login', () => {
 
       expect(navigate).toHaveBeenCalledWith('/admin/manage');
     });
-  });  
+  });
 });
