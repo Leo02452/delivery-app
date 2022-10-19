@@ -6,7 +6,6 @@ import { CheckProdMain, CheckProdContent, Table } from './styles/checkoutProduct
 function CheckoutProducts() {
   const products = useSelector((state) => state.cart.cartProducts);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
-  console.log(products);
 
   return (
     <CheckProdMain className="all_requests">

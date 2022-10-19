@@ -8,9 +8,7 @@ function OrderCard({ order }) {
   const { id, totalPrice, status, saleDate, deliveryAddress } = order;
   const { pathname } = useLocation();
   const isCustomerPage = pathname === '/customer/orders';
-  console.log(isCustomerPage); // true
   const role = pathname.split('/')[0];
-  console.log(pathname.split('/')[1]); // retorna vazio
 
   return (
     <OrderCardContent>
@@ -29,9 +27,8 @@ function OrderCard({ order }) {
           </p>
           <button
             type="button"
-            onClick={ (e) => {
+            onClick={ () => {
               navigate(`${role}/orders/${id}`);
-              console.log(e.target.value); // "/orders/1"
             } }
             data-testid={ isCustomerPage
               ? `customer_orders__element-delivery-status-${id}`
