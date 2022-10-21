@@ -11,15 +11,20 @@ jest.mock('../services/axiosInstance');
 
 
 describe('Admin', () => {
+  afterEach(jest.clearAllMocks);
+
   describe('Create user', () => {
-    it('should be able to register a new user', async () => {
+    beforeEach(() => {
+      localStorage.setItem('user', JSON.stringify(administratorMock))
       const firstListUsersResponseMock = { status: 200, data: usersMock };
+      axiosInstance.get.mockResolvedValueOnce(firstListUsersResponseMock);
+    });
+
+    it('should be able to register a new user', async () => {
       const secondListUsersResponseMock = { status: 200, data: [...usersMock, createdSeller]}
       const registerUserResponseMock = { status: 201, data: createdSeller };
 
-      axiosInstance.get.mockResolvedValueOnce(firstListUsersResponseMock);
       axiosInstance.get.mockResolvedValueOnce(secondListUsersResponseMock);
-      localStorage.setItem('user', JSON.stringify(administratorMock));
       axiosInstance.post.mockResolvedValueOnce(registerUserResponseMock);
 
       renderWithrouter(<UsersManagement />);
@@ -52,6 +57,32 @@ describe('Admin', () => {
       ));
 
       expect(screen.getAllByRole('row')).toHaveLength(6);
+    });
+
+    it('should be able to delete a user', async () => {
+      const secondListUsersResponseMock = { status: 200, data: usersMock.slice(2)}
+      const deleteUserResponseMock = { status: 204 };
+
+      axiosInstance.get.mockResolvedValueOnce(secondListUsersResponseMock);
+      axiosInstance.delete.mockResolvedValueOnce(deleteUserResponseMock);
+
+      renderWithrouter(<UsersManagement />);
+
+      await waitFor(() => expect(axiosInstance.get).toHaveBeenCalled());
+
+      const rows = screen.getAllByRole('row');
+      expect(rows).toHaveLength(5);
+      const deleteUserButtons = screen.getAllByRole('button', { name: 'Excluir' });
+      expect(deleteUserButtons).toHaveLength(4);
+      
+      userEvent.click(deleteUserButtons[0]);
+      
+      await waitFor(() => expect(axiosInstance.delete).toHaveBeenCalledWith(
+        `users/${usersMock[1].id}`,
+        { headers: { authorization: 'any-token' } },
+        ));
+        
+      expect(screen.getAllByRole('row')).toHaveLength(4);
     });
   });
 }); 
