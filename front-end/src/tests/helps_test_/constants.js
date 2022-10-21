@@ -20,9 +20,16 @@ export const sellerMock = {
   role: 'seller',
 };
 
+export const createdSeller = {
+  name: VALID_NAME,
+  email: VALID_EMAIL,
+  role: 'seller',
+};
+
 export const administratorMock = {
   ...commonUserAttribute,
   role: 'administrator',
+  token: 'any-token',
 };
 
 export const productsMock = [
