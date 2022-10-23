@@ -32,6 +32,11 @@ export const administratorMock = {
   token: 'any-token',
 };
 
+export const loggedCustomerMock = {
+  ...customerMock,
+  token: 'any-token',
+};
+
 export const productsMock = [
   {
     id: 1,
