@@ -3,7 +3,7 @@ import SellerOrderDetails from '../pages/SellerOrderDetails';
 import { customerMock } from "./helps_test_/constants";
 import { screen, waitFor } from "@testing-library/react";
 import axiosInstance from '../services/axiosInstance';
-import orderDetailMock from './helps_test_/salesMock';
+import { sellerOrderDetailMock } from './helps_test_/salesMock';
 import userEvent from "@testing-library/user-event";
 
 jest.mock('../services/axiosInstance');
@@ -16,7 +16,7 @@ describe('Seller order details', () => {
     it('should elements be on the page', () => {
       localStorage.setItem('user', JSON.stringify(customerMock));
 
-      const responseMock = { status: 200, data: orderDetailMock };
+      const responseMock = { status: 200, data: sellerOrderDetailMock };
       axiosInstance.get.mockResolvedValueOnce(responseMock);
 
       renderWithrouter(<SellerOrderDetails />);
@@ -38,7 +38,7 @@ describe('Seller order details', () => {
     it('should change order status buttons request the API', async () => {
       localStorage.setItem('user', JSON.stringify(customerMock));
 
-      const responseMock = { status: 200, data: orderDetailMock };
+      const responseMock = { status: 200, data: sellerOrderDetailMock };
       axiosInstance.get.mockResolvedValueOnce(responseMock);
 
       renderWithrouter(<SellerOrderDetails />);
