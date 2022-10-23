@@ -31,3 +31,16 @@ export default {
     name: 'Fulana Pereira',
   },
 };
+
+export const salesByUser = [
+  {
+    id: 1,
+    userId: 1,
+    sellerId: 2,
+    totalPrice: '15.00',
+    deliveryAddress: '',
+    deliveryNumber: 'any-date',
+    saleDate: '2022-10-14T23:51:05.000Z',
+    status: 'Pendente',
+  },
+];
