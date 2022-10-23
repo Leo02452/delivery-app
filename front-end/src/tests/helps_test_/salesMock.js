@@ -1,4 +1,4 @@
-export default {
+export const sellerOrderDetailMock = {
   id: 1,
   userId: 1,
   sellerId: 2,
@@ -30,6 +30,11 @@ export default {
   seller: {
     name: 'Fulana Pereira',
   },
+};
+
+export const customerOrderDetailMock = {
+  ...sellerOrderDetailMock,
+  status: 'Em Trânsito',
 };
 
 export const salesByUser = [
