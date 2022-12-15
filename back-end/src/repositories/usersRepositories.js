@@ -28,11 +28,6 @@ const userRepository = {
     return users;
   },
 
-  async findByPk(id) {
-    const users = await db.User.findByPk(id, { raw: true });
-    return users;
-  },
-
   async delete(id) {
     await db.User.destroy({ where: { id } });
   },

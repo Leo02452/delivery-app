@@ -20,18 +20,6 @@ const usersService = {
       return usersWithoutPassword;
   },
 
-  async findByPk(id) {
-    const user = await userRepository.findByPk(id);
-
-    if (!user) {
-      const e = new Error('User not found');
-      e.name = 'NotFoundError';
-      throw e;
-    }
-
-    return user;
-  },
-
   async create(payload) {
     const nameAlreadyExists = await userRepository.findByName(payload.name);
     const emailAlreadyExists = await userRepository.findByEmail(payload.email);

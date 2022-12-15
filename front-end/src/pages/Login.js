@@ -15,13 +15,13 @@ function Login() {
   const [loginStatus, setLoginStatus] = useState({ status: '', message: '' });
 
   function routeHomePageByRole(role) {
-    console.log(role);
     switch (role) {
     case 'administrator':
-      console.log('esse case');
-      return navigate('/admin/manage');
+      navigate('/admin/manage');
+      break;
     case 'customer':
-      return navigate('/customer/products');
+      navigate('/customer/products');
+      break;
     case 'seller':
       navigate('/seller/orders');
       break;
@@ -65,8 +65,8 @@ function Login() {
       <Switcher />
       <ContentLoginPage>
         <Form>
-          <span>Login</span>
           <label htmlFor="email">
+            Email
             <input
               type="text"
               id="email"
@@ -77,8 +77,8 @@ function Login() {
               onChange={ ({ target }) => setEmail(target.value) }
             />
           </label>
-          <span>Password</span>
           <label htmlFor="password">
+            Password
             <input
               id="password"
               type="password"

@@ -40,8 +40,8 @@ function Register() {
     <MainRegister>
       <ContentRegister>
         <Form>
-          <span>Nome</span>
           <label htmlFor="name">
+            Nome
             <input
               type="text"
               id="name"
@@ -52,8 +52,8 @@ function Register() {
               onChange={ ({ target }) => setName(target.value) }
             />
           </label>
-          <span>Email</span>
           <label htmlFor="email">
+            Email
             <input
               type="text"
               id="email"
@@ -64,10 +64,10 @@ function Register() {
               onChange={ ({ target }) => setEmail(target.value) }
             />
           </label>
-          <span>Senha</span>
           <label htmlFor="password">
+            Senha
             <input
-              type="text"
+              type="password"
               id="password"
               data-testid="common_register__input-password"
               name="password"

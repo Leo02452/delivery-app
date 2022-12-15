@@ -57,7 +57,7 @@ function CheckoutDetails() {
   return (
     <CheckDetailsContent>
       <label htmlFor="seller">
-        <p>Vendedor Responsavel</p>
+        Vendedor Responsavel
         <select
           data-testid="customer_checkout__select-seller"
           onChange={ (e) => setSellerId(e.target.value) }
@@ -75,7 +75,7 @@ function CheckoutDetails() {
         <br />
       </label>
       <LabelAdd htmlFor="address">
-        <p>Endereço</p>
+        Endereço
         <input
           data-testid="customer_checkout__input-address"
           type="text"
@@ -86,7 +86,7 @@ function CheckoutDetails() {
         />
       </LabelAdd>
       <label htmlFor="addressNumber">
-        <p>Número</p>
+        Número
         <input
           data-testid="customer_checkout__input-address-number"
           type="number"

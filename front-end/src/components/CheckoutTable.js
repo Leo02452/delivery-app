@@ -14,7 +14,6 @@ function CheckoutTable({
   const dispatch = useDispatch();
   const [subTotal, setSubTotal] = useState(0);
   // const itemListId = index + 1;
-  // console.log(
   //   id,
   //   describe,
   //   quantity,

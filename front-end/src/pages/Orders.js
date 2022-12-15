@@ -11,7 +11,6 @@ function Orders() {
   // Pegar o usuário no localStorage;
   const user = getUser();
   const { id } = user;
-  console.log(id);
 
   // Fazer requisição no backend pra pegar todas as sales do usuário logado
   useEffect(() => {
@@ -26,7 +25,7 @@ function Orders() {
 
     getOrders();
   }, [id]);
-  console.log(orders);
+
   return (
     <>
       <Switcher />
